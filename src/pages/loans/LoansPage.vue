@@ -365,10 +365,10 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, reactive } from 'vue';
 import { useQuasar } from 'quasar';
-import { useAuthStore } from 'stores/auth-store';
-import { useLoanStore } from 'stores/loan-store';
+import { useAuthStore } from 'src/stores/auth.store';
+import { useLoanStore } from 'src/stores/loan.store';
 import { useMemberStore } from 'stores/member-store';
-import type { Loan, CreateLoanData } from 'src/types';
+import type { Loan, CreateLoanData } from 'src/types/response.mode;';
 
 const $q = useQuasar();
 const authStore = useAuthStore();

@@ -1,16 +1,17 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
-import apiService from 'src/services/api';
-import type { Account, CreateAccountData } from 'src/types';
+import { useAccountService } from 'src/services/account.service';
+import type { AccountModel, CreateAccountData } from 'src/types/account.model';
 
 export const useAccountStore = defineStore('account', () => {
   // State
-  const accounts = ref<Account[]>([]);
+  const accounts = ref<AccountModel[]>([]);
   const isLoading = ref(false);
   const error = ref<string | null>(null);
+  const accountService = useAccountService();
 
   // Getters
-  const totalBalance = computed(() => 
+  const totalBalance = computed(() =>
     accounts.value.reduce((sum, account) => sum + account.balance, 0)
   );
 
@@ -20,7 +21,7 @@ export const useAccountStore = defineStore('account', () => {
   }));
 
   const accountsByCurrency = computed(() => {
-    const grouped: Record<string, Account[]> = {};
+    const grouped: Record<string, AccountModel[]> = {};
     accounts.value.forEach(account => {
       if (!grouped[account.currency]) {
         grouped[account.currency] = [];
@@ -30,7 +31,7 @@ export const useAccountStore = defineStore('account', () => {
     return grouped;
   });
 
-  const getAccountById = (id: string) => 
+  const getAccountById = (id: string) =>
     accounts.value.find(account => account.id === id);
 
   // Actions
@@ -38,8 +39,8 @@ export const useAccountStore = defineStore('account', () => {
     try {
       isLoading.value = true;
       error.value = null;
-      const response = await apiService.getAccounts();
-      
+      const response = await accountService.getAccounts();
+
       if (response.success) {
         accounts.value = response.data;
       } else {
@@ -53,12 +54,12 @@ export const useAccountStore = defineStore('account', () => {
     }
   };
 
-  const createAccount = async (data: CreateAccountData) => {
+  const createAccount = async (data: AccountModel) => {
     try {
       isLoading.value = true;
       error.value = null;
-      const response = await apiService.createAccount(data);
-      
+      const response = await accountService.createAccount(data);
+
       if (response.success) {
         accounts.value.push(response.data);
         return { success: true, data: response.data };
@@ -75,12 +76,12 @@ export const useAccountStore = defineStore('account', () => {
     }
   };
 
-  const updateAccount = async (id: string, data: Partial<CreateAccountData>) => {
+    const updateAccount = async (id: string, data: Partial<AccountModel>) => {
     try {
       isLoading.value = true;
       error.value = null;
-      const response = await apiService.updateAccount(id, data);
-      
+      const response = await accountService.updateAccount(id, data);
+
       if (response.success) {
         const index = accounts.value.findIndex(acc => acc.id === id);
         if (index !== -1) {
@@ -104,8 +105,8 @@ export const useAccountStore = defineStore('account', () => {
     try {
       isLoading.value = true;
       error.value = null;
-      const response = await apiService.deleteAccount(id);
-      
+      const response = await accountService.deleteAccount(id);
+
       if (response.success) {
         accounts.value = accounts.value.filter(acc => acc.id !== id);
         return { success: true };
@@ -138,13 +139,13 @@ export const useAccountStore = defineStore('account', () => {
     accounts,
     isLoading,
     error,
-    
+
     // Getters
     totalBalance,
     accountsByType,
     accountsByCurrency,
     getAccountById,
-    
+
     // Actions
     fetchAccounts,
     createAccount,

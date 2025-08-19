@@ -380,11 +380,11 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, reactive, watch } from 'vue';
 import { useQuasar } from 'quasar';
-import { useAuthStore } from 'stores/auth-store';
-import { useTransactionStore } from 'stores/transaction-store';
-import { useAccountStore } from 'stores/account-store';
+import { useAuthStore } from 'src/stores/auth.store';
+import { useTransactionStore } from 'src/stores/transaction.store';
+import { useAccountStore } from 'src/stores/account.store';
 import { useMemberStore } from 'stores/member-store';
-import type { Transaction, CreateTransactionData } from 'src/types';
+import type { Transaction, CreateTransactionData } from 'src/types/response.mode;';
 
 const $q = useQuasar();
 const authStore = useAuthStore();

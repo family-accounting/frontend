@@ -1,15 +1,16 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
-import apiService from 'src/services/api';
-import type { Transaction, CreateTransactionData } from 'src/types';
+import { useTransactionService } from 'src/services/transaction.service';
+import type { TransactionModel } from 'src/types/transaction.model';
 
 export const useTransactionStore = defineStore('transaction', () => {
   // State
-  const transactions = ref<Transaction[]>([]);
+  const transactions = ref<TransactionModel[]>([]);
   const totalTransactions = ref(0);
   const isLoading = ref(false);
   const error = ref<string | null>(null);
-  
+  const transactionService = useTransactionService();
+
   // Filters
   const filters = ref({
     type: '',
@@ -23,60 +24,60 @@ export const useTransactionStore = defineStore('transaction', () => {
   // Getters
   const filteredTransactions = computed(() => {
     let filtered = [...transactions.value];
-    
+
     if (filters.value.type) {
       filtered = filtered.filter(t => t.type === filters.value.type);
     }
-    
+
     if (filters.value.memberId) {
       filtered = filtered.filter(t => t.memberId === filters.value.memberId);
     }
-    
+
     if (filters.value.startDate) {
       filtered = filtered.filter(t => new Date(t.date) >= new Date(filters.value.startDate));
     }
-    
+
     if (filters.value.endDate) {
       filtered = filtered.filter(t => new Date(t.date) <= new Date(filters.value.endDate));
     }
-    
+
     return filtered;
   });
 
   const transactionsByType = computed(() => {
-    const grouped: Record<string, Transaction[]> = {
+    const grouped: Record<string, TransactionModel[]> = {
       INCOME: [],
       EXPENSE: [],
       TRANSFER: [],
       LOAN: []
     };
-    
+
     filteredTransactions.value.forEach(transaction => {
       grouped[transaction.type]?.push(transaction);
     });
-    
+
     return grouped;
   });
 
-  const totalIncome = computed(() => 
+  const totalIncome = computed(() =>
     transactionsByType.value.INCOME?.reduce((sum, t) => sum + t.amount, 0) || 0
   );
 
-  const totalExpenses = computed(() => 
+  const totalExpenses = computed(() =>
     transactionsByType.value.EXPENSE?.reduce((sum, t) => sum + t.amount, 0) || 0
   );
 
-  const totalTransfers = computed(() => 
+  const totalTransfers = computed(() =>
     transactionsByType.value.TRANSFER?.reduce((sum, t) => sum + t.amount, 0) || 0
   );
 
-  const totalLoans = computed(() => 
+  const totalLoans = computed(() =>
     transactionsByType.value.LOAN?.reduce((sum, t) => sum + t.amount, 0) || 0
   );
 
   const netIncome = computed(() => totalIncome.value - totalExpenses.value);
 
-  const getTransactionById = (id: string) => 
+  const getTransactionById = (id: string) =>
     transactions.value.find(transaction => transaction.id === id);
 
   // Actions
@@ -84,14 +85,14 @@ export const useTransactionStore = defineStore('transaction', () => {
     try {
       isLoading.value = true;
       error.value = null;
-      
+
       const queryParams = { ...filters.value, ...params };
-      const response = await apiService.getTransactions(queryParams);
-      
-      if (response.success) {
+      const response = await transactionService.getTransactions(queryParams);
+
+      if (response.isSuccess) {
         transactions.value = response.data.transactions;
         totalTransactions.value = response.data.total;
-        
+
         if (params) {
           Object.assign(filters.value, params);
         }
@@ -106,13 +107,13 @@ export const useTransactionStore = defineStore('transaction', () => {
     }
   };
 
-  const createTransaction = async (data: CreateTransactionData) => {
+  const createTransaction = async (data: TransactionModel) => {
     try {
       isLoading.value = true;
       error.value = null;
-      const response = await apiService.createTransaction(data);
-      
-      if (response.success) {
+      const response = await transactionService.createTransaction(data);
+
+      if (response.isSuccess) {
         transactions.value.unshift(response.data);
         totalTransactions.value += 1;
         return { success: true, data: response.data };
@@ -129,13 +130,13 @@ export const useTransactionStore = defineStore('transaction', () => {
     }
   };
 
-  const updateTransaction = async (id: string, data: Partial<CreateTransactionData>) => {
+  const updateTransaction = async (id: string, data: Partial<TransactionModel>) => {
     try {
       isLoading.value = true;
       error.value = null;
-      const response = await apiService.updateTransaction(id, data);
-      
-      if (response.success) {
+      const response = await transactionService.updateTransaction(id, data);
+
+      if (response.isSuccess) {
         const index = transactions.value.findIndex(t => t.id === id);
         if (index !== -1) {
           transactions.value[index] = response.data;
@@ -158,9 +159,9 @@ export const useTransactionStore = defineStore('transaction', () => {
     try {
       isLoading.value = true;
       error.value = null;
-      const response = await apiService.deleteTransaction(id);
-      
-      if (response.success) {
+      const response = await transactionService.deleteTransaction(id);
+
+      if (response.isSuccess) {
         transactions.value = transactions.value.filter(t => t.id !== id);
         totalTransactions.value -= 1;
         return { success: true };
@@ -204,7 +205,7 @@ export const useTransactionStore = defineStore('transaction', () => {
     isLoading,
     error,
     filters,
-    
+
     // Getters
     filteredTransactions,
     transactionsByType,
@@ -214,7 +215,7 @@ export const useTransactionStore = defineStore('transaction', () => {
     totalLoans,
     netIncome,
     getTransactionById,
-    
+
     // Actions
     fetchTransactions,
     createTransaction,

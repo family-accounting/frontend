@@ -103,7 +103,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import { useAuthStore } from 'stores/auth-store';
+import { useAuthStore } from 'src/stores/auth.store';
 import { useQuasar } from 'quasar';
 
 const $q = useQuasar();

@@ -221,10 +221,10 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, reactive } from 'vue';
 import { useQuasar } from 'quasar';
-import { useAuthStore } from 'stores/auth-store';
-import { useAccountStore } from 'stores/account-store';
+import { useAuthStore } from 'src/stores/auth.store';
+import { useAccountStore } from 'src/stores/account.store';
 import { useMemberStore } from 'stores/member-store';
-import type { Account, CreateAccountData } from 'src/types';
+import type { Account, CreateAccountData } from 'src/types/response.mode;';
 
 const $q = useQuasar();
 const authStore = useAuthStore();

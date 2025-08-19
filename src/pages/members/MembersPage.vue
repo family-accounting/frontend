@@ -243,9 +243,9 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, reactive } from 'vue';
 import { useQuasar } from 'quasar';
-import { useAuthStore } from 'stores/auth-store';
+import { useAuthStore } from 'src/stores/auth.store';
 import { useMemberStore } from 'stores/member-store';
-import type { Member, CreateMemberData } from 'src/types';
+import type { Member, CreateMemberData } from 'src/types/response.mode;';
 
 const $q = useQuasar();
 const authStore = useAuthStore();

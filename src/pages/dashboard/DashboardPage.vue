@@ -189,9 +189,9 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue';
-import { useAuthStore } from 'stores/auth-store';
-import { useAccountStore } from 'stores/account-store';
-import { useTransactionStore } from 'stores/transaction-store';
+import { useAuthStore } from 'src/stores/auth.store';
+import { useAccountStore } from 'src/stores/account.store';
+import { useTransactionStore } from 'src/stores/transaction.store';
 import { useMemberStore } from 'stores/member-store';
 import { useQuasar } from 'quasar';
 

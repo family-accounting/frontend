@@ -73,7 +73,7 @@
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
-import { useAuthStore } from 'stores/auth-store';
+import { useAuthStore } from 'src/stores/auth.store';
 import { showNotification } from 'src/utils';
 
 const authStore = useAuthStore();

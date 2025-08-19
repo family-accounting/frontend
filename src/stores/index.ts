@@ -32,8 +32,8 @@ export default defineStore((/* { ssrContext } */) => {
 });
 
 // Export all stores
-export { useAuthStore } from './auth-store';
-export { useAccountStore } from './account-store';
-export { useTransactionStore } from './transaction-store';
+export { useAuthStore } from './auth.store';
+export { useAccountStore } from './account.store';
+export { useTransactionStore } from './transaction.store';
 export { useMemberStore } from './member-store';
-export { useLoanStore } from './loan-store';
+export { useLoanStore } from './loan.store';

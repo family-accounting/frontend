@@ -1,56 +1,57 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
-import apiService from 'src/services/api';
-import type { Loan, CreateLoanData } from 'src/types';
+import { useLoanService } from 'src/services/loan.service';
+import type { LoanModel } from 'src/types/loan.model';
 
 export const useLoanStore = defineStore('loan', () => {
   // State
-  const loans = ref<Loan[]>([]);
+  const loans = ref<LoanModel[]>([]);
   const isLoading = ref(false);
   const error = ref<string | null>(null);
+  const loanService = useLoanService();
 
   // Getters
-  const givenLoans = computed(() => 
+  const givenLoans = computed(() =>
     loans.value.filter(loan => loan.type === 'GIVEN')
   );
 
-  const receivedLoans = computed(() => 
+  const receivedLoans = computed(() =>
     loans.value.filter(loan => loan.type === 'RECEIVED')
   );
 
-  const pendingLoans = computed(() => 
+  const pendingLoans = computed(() =>
     loans.value.filter(loan => !loan.isRepaid)
   );
 
-  const repaidLoans = computed(() => 
+  const repaidLoans = computed(() =>
     loans.value.filter(loan => loan.isRepaid)
   );
 
-  const totalGivenLoans = computed(() => 
+  const totalGivenLoans = computed(() =>
     givenLoans.value.reduce((sum, loan) => sum + loan.amount, 0)
   );
 
-  const totalReceivedLoans = computed(() => 
+  const totalReceivedLoans = computed(() =>
     receivedLoans.value.reduce((sum, loan) => sum + loan.amount, 0)
   );
 
-  const totalPendingGiven = computed(() => 
+  const totalPendingGiven = computed(() =>
     pendingLoans.value
       .filter(loan => loan.type === 'GIVEN')
       .reduce((sum, loan) => sum + (loan.amount - loan.repaidAmount), 0)
   );
 
-  const totalPendingReceived = computed(() => 
+  const totalPendingReceived = computed(() =>
     pendingLoans.value
       .filter(loan => loan.type === 'RECEIVED')
       .reduce((sum, loan) => sum + (loan.amount - loan.repaidAmount), 0)
   );
 
-  const netLoanPosition = computed(() => 
+  const netLoanPosition = computed(() =>
     totalPendingGiven.value - totalPendingReceived.value
   );
 
-  const getLoanById = (id: string) => 
+  const getLoanById = (id: string) =>
     loans.value.find(loan => loan.id === id);
 
   const getLoansByMember = (memberId: string) => ({
@@ -63,9 +64,9 @@ export const useLoanStore = defineStore('loan', () => {
     try {
       isLoading.value = true;
       error.value = null;
-      const response = await apiService.getLoans();
-      
-      if (response.success) {
+      const response = await loanService.getLoans();
+
+      if (response.isSuccess) {
         loans.value = response.data;
       } else {
         error.value = response.message;
@@ -78,13 +79,13 @@ export const useLoanStore = defineStore('loan', () => {
     }
   };
 
-  const createLoan = async (data: CreateLoanData) => {
+  const createLoan = async (data: LoanModel) => {
     try {
       isLoading.value = true;
       error.value = null;
-      const response = await apiService.createLoan(data);
-      
-      if (response.success) {
+      const response = await loanService.createLoan(data);
+
+      if (response.isSuccess) {
         loans.value.push(response.data);
         return { success: true, data: response.data };
       } else {
@@ -100,13 +101,13 @@ export const useLoanStore = defineStore('loan', () => {
     }
   };
 
-  const updateLoan = async (id: string, data: Partial<CreateLoanData>) => {
+      const updateLoan = async (id: string, data: Partial<LoanModel>) => {
     try {
       isLoading.value = true;
       error.value = null;
-      const response = await apiService.updateLoan(id, data);
-      
-      if (response.success) {
+      const response = await loanService.updateLoan(id, data);
+
+      if (response.isSuccess) {
         const index = loans.value.findIndex(l => l.id === id);
         if (index !== -1) {
           loans.value[index] = response.data;
@@ -129,9 +130,9 @@ export const useLoanStore = defineStore('loan', () => {
     try {
       isLoading.value = true;
       error.value = null;
-      const response = await apiService.deleteLoan(id);
-      
-      if (response.success) {
+      const response = await loanService.deleteLoan(id);
+
+      if (response.isSuccess) {
         loans.value = loans.value.filter(l => l.id !== id);
         return { success: true };
       } else {
@@ -151,9 +152,9 @@ export const useLoanStore = defineStore('loan', () => {
     try {
       isLoading.value = true;
       error.value = null;
-      const response = await apiService.markLoanRepaid(id, repaidAmount);
-      
-      if (response.success) {
+      const response = await loanService.markLoanRepaid(id, repaidAmount);
+
+      if (response.isSuccess) {
         const index = loans.value.findIndex(l => l.id === id);
         if (index !== -1) {
           loans.value[index] = response.data;
@@ -181,7 +182,7 @@ export const useLoanStore = defineStore('loan', () => {
     loans,
     isLoading,
     error,
-    
+
     // Getters
     givenLoans,
     receivedLoans,
@@ -194,7 +195,7 @@ export const useLoanStore = defineStore('loan', () => {
     netLoanPosition,
     getLoanById,
     getLoansByMember,
-    
+
     // Actions
     fetchLoans,
     createLoan,
