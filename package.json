@@ -1,8 +1,8 @@
 {
-  "name": "family-finance",
+  "name": "family-accounting",
   "version": "0.0.1",
-  "description": "family-finance",
-  "productName": "family-finance",
+  "description": "A familiy accounting app",
+  "productName": "Familiy accounting",
   "author": "Amir Maghami <Maghami.A1987@gmail.com>",
   "type": "module",
   "private": true,
@@ -16,17 +16,13 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.16.4",
-    "apexcharts": "^5.3.3",
     "axios": "^1.2.1",
-    "chart.js": "^4.5.0",
-    "date-fns": "^4.1.0",
     "pinia": "^3.0.1",
     "quasar": "^2.16.0",
     "vue": "^3.4.18",
-    "vue-chartjs": "^5.3.2",
     "vue-i18n": "^11.0.0",
     "vue-router": "^4.0.12",
-    "vue3-apexcharts": "^1.8.0"
+    "zod": "^4.1.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.14.0",

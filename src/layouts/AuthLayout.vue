@@ -1,11 +1,18 @@
 <template>
-  <q-layout view="hHh Lpr lFf">
+  <q-layout
+    view="lHh Lpr lFf"
+    class="bg-grey-4 full-height full-width row justify-center items-center"
+  >
     <q-page-container>
-      <router-view />
+      <div class="full-width full-height flex flex-center">
+        <q-card>
+          <q-card-section>
+            <router-view />
+          </q-card-section>
+        </q-card>
+      </div>
     </q-page-container>
   </q-layout>
 </template>
 
-<script setup lang="ts">
-// This layout is minimal and only used for auth pages
-</script>
+<script setup lang="ts"></script>
