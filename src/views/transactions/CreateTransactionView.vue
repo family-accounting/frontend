@@ -42,9 +42,16 @@
         </ion-item>
       </ion-list>
 
-      <ion-button expand="block" @click="submitForm" :disabled="isLoading">
+      <div class="flex justify-between">
+
+        <ion-button expand="block" @click="submitForm" :disabled="isLoading">
         {{ isLoading ? 'در حال ذخیره...' : 'ذخیره' }}
       </ion-button>
+      
+      <ion-button expand="block" @click="cancelForm" >
+        لغو
+      </ion-button>
+      </div>
 
       <ion-loading 
         :isOpen="isLoading" 
@@ -96,5 +103,9 @@ const submitForm = async () => {
   } finally {
     isLoading.value = false;
   }
+};
+
+const cancelForm = () => {
+  router.push({ name: 'TransactionView' });
 };
 </script>
