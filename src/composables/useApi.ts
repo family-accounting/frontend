@@ -1,5 +1,5 @@
 import axios, { AxiosRequestHeaders } from "axios";
-import { useAuthStore } from "@/stores/authStore";
+import { useAuthStore } from "@/stores/auth.store";
 
 
  const useApi = ()=>{

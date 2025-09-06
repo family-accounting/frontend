@@ -9,7 +9,7 @@ import type {
   roleSchema,
   updatedAtSchema,
   createdAtSchema,
-} from '../schemas/index';
+} from '../schemas/base.schema';
 
 export type Token = z.infer<typeof tokenSchema>;
 export type Id = z.infer<typeof IdSchema>;

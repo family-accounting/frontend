@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { RoleEnum, StatusEnum } from '../../enums';
+import { RoleEnum, StatusEnum } from '../enums';
 
 export const tokenSchema = z.jwt();
 export const roleSchema = z.enum(RoleEnum);

@@ -7,7 +7,7 @@ import {
   passwordConfirmSchema,
   roleSchema,
   statusSchema,
-} from '../schemas';
+} from '../schemas/base.schema';
 
 export const paramIdSchema = z.object({
   id: IdSchema,

@@ -65,7 +65,7 @@ import {
   RefresherCustomEvent,
   IonItemOption, IonItemOptions, IonItemSliding
 } from '@ionic/vue';
-import { useTransactionStore } from '@/stores/tansactionStore';
+import { useTransactionStore } from '@/stores/tansaction.store';
 import { ref } from 'vue';
 import { add } from 'ionicons/icons';
 import { onIonViewWillEnter } from '@ionic/vue';

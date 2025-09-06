@@ -72,7 +72,7 @@ import {
   IonLoading,
 } from '@ionic/vue';
 import { ref } from 'vue';
-import { useTransactionStore } from '@/stores/tansactionStore';
+import { useTransactionStore } from '@/stores/tansaction.store';
 import { useRouter } from 'vue-router';
 
 const transactionStore = useTransactionStore();

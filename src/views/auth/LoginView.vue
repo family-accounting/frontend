@@ -23,7 +23,7 @@
     </ion-page>
 </template>
 <script setup lang="ts">
-import { useAuthStore } from "@/stores/authStore";
+import { useAuthStore } from "@/stores/auth.store";
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonButton, IonLoading,IonInputPasswordToggle  } from "@ionic/vue";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
