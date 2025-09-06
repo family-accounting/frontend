@@ -1,9 +1,10 @@
 import { useApi } from "@/composables/useApi";
+import { LoginAuthDto } from "@/types/auth.dto";
 
 export const useAuthService = ()=>{
     const api = useApi();
     
-    const login = async (dto: {mobile: string, password: string})=>{
+    const login = async (dto: LoginAuthDto)=>{
         const response = await api.post('/auth/login', dto);
         return response.data;
     }

@@ -24,13 +24,14 @@
 </template>
 <script setup lang="ts">
 import { useAuthStore } from "@/stores/auth.store";
+import { LoginAuthDto } from "@/types/auth.dto";
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonButton, IonLoading,IonInputPasswordToggle  } from "@ionic/vue";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 const authStore = useAuthStore();
-const loginData = ref<{ mobile: string, password: string }>({ mobile: "09198881400", password: "12345678" });
+const loginData = ref<LoginAuthDto>({ mobile: "09198881400", password: "12345678" });
 
 const isLoading = ref(false);
 const login = async () => {
