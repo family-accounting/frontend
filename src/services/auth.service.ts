@@ -1,5 +1,5 @@
 import { useApi } from "@/composables/useApi";
-import { LoginAuthDto } from "@/types/auth.dto";
+import { LoginAuthDto, RegisterAuthDto } from "@/types/auth.dto";
 
 export const useAuthService = ()=>{
     const api = useApi();
@@ -8,7 +8,7 @@ export const useAuthService = ()=>{
         const response = await api.post('/auth/login', dto);
         return response.data;
     }
-    const register = async (dto: {mobile: string, password: string})=>{
+    const register = async (dto: RegisterAuthDto)=>{
         const response = await api.post('/auth/register', dto);
         return response.data;
     }
