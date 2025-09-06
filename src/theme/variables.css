@@ -1,0 +1,10 @@
+/* For information on how to create your own theme, please see:
+http://ionicframework.com/docs/theming/ */
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
+:root {
+  --ion-font-family: 'Vazirmatn', sans-serif;
+  --ion-default-font: 'Vazirmatn', sans-serif;
+}
+html.ios {
+    --ion-default-font: 'Vazirmatn', sans-serif;
+}
