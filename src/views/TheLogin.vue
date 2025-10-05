@@ -3,6 +3,12 @@ import * as z from 'zod'
 import type { FormSubmitEvent, AuthFormField } from '@nuxt/ui'
 import { useToast } from '@nuxt/ui/runtime/composables/useToast.js'
 
+import { useHead } from '@vueuse/head';
+
+useHead({
+    title: 'Login - Family Accounting'
+})
+
 const toast = useToast()
 
 const fields: AuthFormField[] = [{

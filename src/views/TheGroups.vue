@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useHead } from '@vueuse/head';
+
+useHead({
+    title: 'Groups - Family Accounting'
+})
 
 const users = ref([
     {
