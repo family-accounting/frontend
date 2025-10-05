@@ -5,5 +5,5 @@
   </UApp>
 </template>
 
-<script setup lang="ts"></script>
-<style scoped></style>
+<script setup lang="ts">
+</script>
