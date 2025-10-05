@@ -12,7 +12,9 @@ const isAccountsActive = computed(() => route.name === 'AccountsView')
 
 <template>
   <div class="flex flex-col h-svh">
-    <div class="flex justify-between items-center gap-x-4 p-4 border-b border-b-neutral-200 dark:border-b-neutral-800">
+    <div
+      class="flex justify-between items-center gap-x-4 p-4 border-b border-b-neutral-200 dark:border-b-neutral-800"
+    >
       <div class="flex items-center gap-x-2">
         <img src="/logo.svg" alt="logo" class="w-10 h-10" />
         <span class="text-xs">{{ route.meta.title }}</span>
@@ -26,22 +28,34 @@ const isAccountsActive = computed(() => route.name === 'AccountsView')
       <RouterView />
     </div>
     <div class="flex gap-x-4 border-t border-t-neutral-200 dark:border-t-neutral-800">
-      <RouterLink :class="[
-        'py-2 flex-1 flex justify-center items-center',
-        isGroupsActive ? 'bg-primary text-primary-foreground' : 'bg-transparent'
-      ]" to="/">
+      <RouterLink
+        v-wave
+        :class="[
+          'py-2 flex-1 flex justify-center items-center',
+          isGroupsActive ? 'bg-primary text-primary-foreground' : 'bg-transparent',
+        ]"
+        to="/"
+      >
         Groups
       </RouterLink>
-      <RouterLink :class="[
-        'py-2 flex-1 flex justify-center items-center',
-        isWalletsActive ? 'bg-primary text-primary-foreground' : 'bg-transparent'
-      ]" to="/wallets">
+      <RouterLink
+        v-wave
+        :class="[
+          'py-2 flex-1 flex justify-center items-center',
+          isWalletsActive ? 'bg-primary text-primary-foreground' : 'bg-transparent',
+        ]"
+        to="/wallets"
+      >
         Wallets
       </RouterLink>
-      <RouterLink :class="[
-        'py-2 flex-1 flex justify-center items-center',
-        isAccountsActive ? 'bg-primary text-primary-foreground' : 'bg-transparent'
-      ]" to="/accounts">
+      <RouterLink
+        v-wave
+        :class="[
+          'py-2 flex-1 flex justify-center items-center',
+          isAccountsActive ? 'bg-primary text-primary-foreground' : 'bg-transparent',
+        ]"
+        to="/accounts"
+      >
         Accounts
       </RouterLink>
     </div>

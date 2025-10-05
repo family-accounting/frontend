@@ -80,7 +80,15 @@ function onSubmit(payload: FormSubmitEvent<Schema>) {
         :ui="{
           body: 'flex-col-reverse',
         }"
-      />
+      >
+        <template #submit>
+          <div v-wave class="flex justify-center overflow-hidden">
+            <UButton type="submit" color="primary" :ui="{ base: 'w-full flex justify-center ' }">
+              Login
+            </UButton>
+          </div>
+        </template>
+      </UAuthForm>
     </UPageCard>
   </div>
 </template>
