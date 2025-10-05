@@ -64,7 +64,11 @@ function onSubmit(payload: FormSubmitEvent<Schema>) {
 
 <template>
   <div class="flex flex-col items-center justify-center gap-4 p-4">
-    <UPageCard class="w-full max-w-md">
+    <UPageCard
+      :ui="{
+        root: 'w-full',
+      }"
+    >
       <UAuthForm
         :schema="schema"
         title="Login"
@@ -73,6 +77,9 @@ function onSubmit(payload: FormSubmitEvent<Schema>) {
         :fields="fields"
         :providers="providers"
         @submit="onSubmit"
+        :ui="{
+          body: 'flex-col-reverse',
+        }"
       />
     </UPageCard>
   </div>

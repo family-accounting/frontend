@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import TheLogin from '@/views/TheLogin.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,30 +10,34 @@ const router = createRouter({
       children: [
         {
           path: '',
-          component: () => import('../views/TheGroups.vue'),
+          component: () => import('@/views/GroupsView.vue'),
           meta: { title: 'Groups - Family Accounting' },
+        },
+        {
+          path: 'wallets',
+          component: () => import('@/views/WalletsView.vue'),
+          meta: { title: 'Wallets - Family Accounting' },
+        },
+        {
+          path: 'accounts',
+          component: () => import('@/views/AccountsView.vue'),
+          meta: { title: 'Accounts - Family Accounting' },
         },
       ],
     },
     {
-      path: '/',
-      component: () => import('../views/TheGroups.vue'),
-      meta: { title: 'Groups - Family Accounting' },
-    },
-    {
-      path: '/login',
-      component: () => import('../views/TheLogin.vue'),
-      meta: { title: 'Login - Family Accounting' },
+      path: '/auth',
+      component: () => import('@/layouts/AuthLayout.vue'),
+      meta: { title: 'Auth - Family Accounting' },
+      children: [
+        {
+          path: 'login',
+          component: () => import('@/views/LoginView.vue'),
+          meta: { title: 'Login - Family Accounting' },
+        },
+      ],
     },
   ],
-})
-
-// Add navigation guard to update page title
-router.beforeEach((to, from, next) => {
-  // Set the page title based on route meta or default
-  const title = (to.meta?.title as string) || 'Family Accounting'
-  document.title = title
-  next()
 })
 
 export default router
