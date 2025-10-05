@@ -19,7 +19,7 @@ const isAccountsActive = computed(() => route.name === 'AccountsView')
       </div>
       <div class="flex items-center gap-x-2">
         <UColorModeButton class="cursor-pointer" />
-        <span>Version: {{ version }}</span>
+        <span class="text-xs">Version: {{ version }}</span>
       </div>
     </div>
     <div class="flex-1">
