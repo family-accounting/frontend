@@ -6,13 +6,25 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      component: () => import('../layouts/GroupLayout.vue'),
+      meta: { title: 'Groups - Family Accounting' },
+      children: [
+        {
+          path: '',
+          component: () => import('../views/TheGroups.vue'),
+          meta: { title: 'Groups - Family Accounting' },
+        },
+      ],
+    },
+    {
+      path: '/',
       component: () => import('../views/TheGroups.vue'),
-      meta: { title: 'Groups - Family Accounting' }
+      meta: { title: 'Groups - Family Accounting' },
     },
     {
       path: '/login',
       component: () => import('../views/TheLogin.vue'),
-      meta: { title: 'Login - Family Accounting' }
+      meta: { title: 'Login - Family Accounting' },
     },
   ],
 })
@@ -20,7 +32,7 @@ const router = createRouter({
 // Add navigation guard to update page title
 router.beforeEach((to, from, next) => {
   // Set the page title based on route meta or default
-  const title = to.meta?.title as string || 'Family Accounting'
+  const title = (to.meta?.title as string) || 'Family Accounting'
   document.title = title
   next()
 })
