@@ -5,12 +5,13 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'GroupLayout',
-      component: () => import('../layouts/GroupLayout.vue'),
+      name: 'GroupsLayout',
+      redirect: '/groups',
+      component: () => import('../layouts/GroupsLayout.vue'),
       meta: { title: 'Groups - Family Accounting' },
       children: [
         {
-          path: '',
+          path: 'groups',
           name: 'GroupsView',
           component: () => import('@/views/GroupsView.vue'),
           meta: { title: 'Groups - Family Accounting' },
@@ -26,6 +27,20 @@ const router = createRouter({
           name: 'AccountsView',
           component: () => import('@/views/AccountsView.vue'),
           meta: { title: 'Accounts - Family Accounting' },
+        },
+      ],
+    },
+    {
+      path: '/group',
+      name: 'GroupLayout',
+      redirect: '/groups',
+      component: () => import('../layouts/GroupsLayout.vue'),
+      children: [
+        {
+          path: 'group/:id',
+          name: 'GroupView',
+          component: () => import('@/views/GroupView.vue'),
+          meta: { title: 'Group - Family Accounting' },
         },
       ],
     },

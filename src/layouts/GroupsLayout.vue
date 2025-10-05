@@ -5,8 +5,9 @@ import { computed } from 'vue'
 
 const route = useRoute()
 
-const isTransactionsActive = computed(() => route.name === 'TransactionsView')
-const isSettingsActive = computed(() => route.name === 'SettingsView')
+const isGroupsActive = computed(() => route.name === 'GroupsView')
+const isWalletsActive = computed(() => route.name === 'WalletsView')
+const isAccountsActive = computed(() => route.name === 'AccountsView')
 </script>
 
 <template>
@@ -31,21 +32,31 @@ const isSettingsActive = computed(() => route.name === 'SettingsView')
         v-wave
         :class="[
           'py-2 flex-1 flex justify-center items-center',
-          isTransactionsActive ? 'bg-primary text-primary-foreground' : 'bg-transparent',
+          isGroupsActive ? 'bg-primary text-primary-foreground' : 'bg-transparent',
         ]"
-        to="/transactions"
+        to="/"
       >
-        Transactions
+        Groups
       </RouterLink>
       <RouterLink
         v-wave
         :class="[
           'py-2 flex-1 flex justify-center items-center',
-          isSettingsActive ? 'bg-primary text-primary-foreground' : 'bg-transparent',
+          isWalletsActive ? 'bg-primary text-primary-foreground' : 'bg-transparent',
         ]"
-        to="/settings"
+        to="/wallets"
       >
-        Settings
+        Wallets
+      </RouterLink>
+      <RouterLink
+        v-wave
+        :class="[
+          'py-2 flex-1 flex justify-center items-center',
+          isAccountsActive ? 'bg-primary text-primary-foreground' : 'bg-transparent',
+        ]"
+        to="/accounts"
+      >
+        Accounts
       </RouterLink>
     </div>
   </div>
