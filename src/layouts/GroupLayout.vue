@@ -15,7 +15,7 @@ const isAccountsActive = computed(() => route.name === 'AccountsView')
     <div class="flex justify-between items-center gap-x-4 p-4 border-b border-b-neutral-200 dark:border-b-neutral-800">
       <div class="flex items-center gap-x-2">
         <img src="/logo.svg" alt="logo" class="w-10 h-10" />
-        Family Accounting
+        <span class="text-xs">{{ route.meta.title }}</span>
       </div>
       <div class="flex items-center gap-x-2">
         <UColorModeButton class="cursor-pointer" />
