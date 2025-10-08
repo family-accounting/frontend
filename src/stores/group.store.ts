@@ -8,7 +8,7 @@ export const useGroupStore = defineStore('group', () => {
       id: 'group-1',
       name: 'Family',
       description: 'All family members',
-      members: ['u1', 'u2', 'u3'],
+      members: ['user-1', 'user-2', 'user-3'],
       avatar: {
         src: 'https://ui-avatars.com/api/?name=Family',
         alt: 'Family group avatar',
@@ -22,7 +22,7 @@ export const useGroupStore = defineStore('group', () => {
       id: 'group-2',
       name: 'Friends',
       description: 'Close friends group',
-      members: ['u2', 'u4'],
+      members: ['user-2', 'user-4'],
       avatar: {
         src: 'https://ui-avatars.com/api/?name=Friends',
         alt: 'Friends group avatar',
@@ -36,7 +36,7 @@ export const useGroupStore = defineStore('group', () => {
       id: 'group-3',
       name: 'Work',
       description: 'Work colleagues',
-      members: ['u1', 'u3', 'u5'],
+      members: ['user-1', 'user-3', 'user-5'],
       avatar: {
         src: 'https://ui-avatars.com/api/?name=Work',
         alt: 'Work group avatar',
@@ -48,8 +48,8 @@ export const useGroupStore = defineStore('group', () => {
     },
   ])
 
-  const getGroupById = (id: IGroup['id']) => {
-    return groups.value.find((group) => group.id === id) as IGroup
+  const getGroupById = (groupId: IGroup['id']) => {
+    return groups.value.find((group) => group.id === groupId) as IGroup
   }
 
   const createGroup = (group: IGroup) => {
@@ -61,8 +61,8 @@ export const useGroupStore = defineStore('group', () => {
     groups.value[index] = group
   }
 
-  const deleteGroup = (id: IGroup['id']) => {
-    groups.value = groups.value.filter((group) => group.id !== id)
+  const deleteGroup = (groupId: IGroup['id']) => {
+    groups.value = groups.value.filter((group) => group.id !== groupId)
   }
   
 
