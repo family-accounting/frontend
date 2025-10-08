@@ -34,13 +34,28 @@ const router = createRouter({
       path: '/group',
       name: 'GroupLayout',
       redirect: '/groups',
-      component: () => import('../layouts/GroupsLayout.vue'),
+      component: () => import('../layouts/GroupLayout.vue'),
       children: [
         {
-          path: 'group/:id',
+          path: ':groupId',
           name: 'GroupView',
           component: () => import('@/views/GroupView.vue'),
           meta: { title: 'Group - Family Accounting' },
+          children:[
+            {
+              path: 'transactions',
+              name: 'TransactionsView',
+              component: () => import('@/views/GroupTransactionsView.vue'),
+              meta: { title: 'Transactions - Family Accounting' },
+            },
+            {
+              path: 'settings',
+              name: 'SettingsView',
+              component: () => import('@/views/GroupSettingsView.vue'),
+              meta: { title: 'Settings - Family Accounting' },
+            
+            }
+          ]
         },
       ],
     },
