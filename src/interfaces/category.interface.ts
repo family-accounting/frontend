@@ -4,6 +4,12 @@ export interface ICategory {
   id: string
   name: string
   description: string
+  color: string
+  icon: string
+  avatar: {
+    src: string
+    alt: string
+  }
   createdAt: string
   updatedAt: string
   createdBy: IUser['id']

@@ -1,22 +1,20 @@
 <template>
-  <UPage class="py-4">
-    <UContainer>
+  <UPage class="p-4">
       <UCard>
         <h1>Group</h1>
-        <p>{{ group.name }}</p>
-        <p>{{ group.description }}</p>
-        <p>{{ group.members }}</p>
-        <p>{{ group.avatar }}</p>
-        <p>{{ group.createdAt }}</p>
-        <p>{{ group.updatedAt }}</p>
-        <p>{{ group.createdBy }}</p>
-        <p>{{ group.updatedBy }}</p>
+        <p>{{ group?.name }}</p>
+        <p>{{ group?.description }}</p>
+        <p>{{ group?.members }}</p>
+        <p>{{ group?.avatar }}</p>
+        <p>{{ group?.createdAt }}</p>
+        <p>{{ group?.updatedAt }}</p>
+        <p>{{ group?.createdBy }}</p>
+        <p>{{ group?.updatedBy }}</p>
         <p>{{ groupId }}</p>
       </UCard>
-    </UContainer>
-    <UContainer class="pt-4">
+    <div class="pt-4 overflow-y-auto">
       <RouterView />
-    </UContainer>
+    </div>
   </UPage>
 </template>
 <script setup lang="ts">
