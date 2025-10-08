@@ -1,5 +1,14 @@
+<script setup lang="ts">
+import { useHead } from '@vueuse/head'
+
+useHead({
+    title: 'Group Settings - Family Accounting',
+})
+
+</script>
+
 <template>
-  <UPage>
-    <h1>Group Settings</h1>
-  </UPage>
+    <div class="">
+        <h1>Group Settings</h1>
+    </div>
 </template>
