@@ -11,7 +11,12 @@ const groupStore = useGroupStore()
 <template>
   <UPageList divide>
     <template v-for="group in groupStore.groups" :key="group.id">
-      <UPageCard variant="ghost" :to="`/groups/${group.id}`">
+      <UPageCard variant="ghost" :to="{
+        name: 'TransactionsView',
+        params: {
+          groupId: group.id,
+        },
+      }">
         <template #body>
           <UUser :name="group.name" :description="group.description" :avatar="group.avatar" :to="`/groups/${group.id}`"
             size="xl" />
