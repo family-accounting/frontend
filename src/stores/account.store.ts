@@ -52,23 +52,23 @@ export const useAccountStore = defineStore('account', () => {
     }
   ])
 
-  const getAccountById = (id: IAccount['id']) => {
-    return accounts.value.find((account) => account.id === id) as IAccount
+  const getAccountById = (accountId: IAccount['id']) => {
+    return accounts.value.find((account) => account.id === accountId) as IAccount
   }
 
-  const createGroup = (group: IAccount) => {
-    accounts.value.push(group)
+  const createAccount = (account: IAccount) => {
+    accounts.value.push(account)
   }
 
-  const updateGroup = (group: IAccount) => {
-    const index = accounts.value.findIndex((group) => group.id === group.id)
-    accounts.value[index] = group
+  const updateAccount = (account: IAccount) => {
+    const index = accounts.value.findIndex((account) => account.id === account.id)
+    accounts.value[index] = account
   }
 
-  const deleteGroup = (id: IAccount['id']) => {
-    accounts.value = accounts.value.filter((group) => group.id !== id)
+  const deleteAccount = (accountId: IAccount['id']) => {
+    accounts.value = accounts.value.filter((account) => account.id !== accountId)
   }
   
 
-  return { accounts, getAccountById, createGroup, updateGroup, deleteGroup }
+  return { accounts, getAccountById, createAccount, updateAccount, deleteAccount }
 })
