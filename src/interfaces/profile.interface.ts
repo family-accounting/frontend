@@ -1,3 +1,5 @@
+import type { IUser } from "./user.interface"
+
 export interface IProfile {
   id: string
   firstName: string
@@ -5,4 +7,5 @@ export interface IProfile {
   avatar: string
   createdAt: string
   updatedAt: string
+  userId: IUser['id']
 }

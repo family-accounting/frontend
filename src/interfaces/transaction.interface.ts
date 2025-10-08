@@ -1,15 +1,15 @@
 import type { IUser } from "./user.interface"
 
-export interface IWallet {
+export interface ITransaction {
   id: string
   name: string
   description: string
-  color: string
-  icon: string
-    avatar: {
-        src: string
-        alt: string
-    }
+  amount: number
+  type: string
+  category: string
+  date: string
+  time: string
+  location: string
   createdAt: string
   updatedAt: string
   createdBy: IUser['id']
