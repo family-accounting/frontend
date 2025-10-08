@@ -51,8 +51,8 @@ export const useWalletStore = defineStore('wallet', () => {
     }
   ])
 
-  const getWalletById = (id: IWallet['id']) => {
-    return wallets.value.find((wallet) => wallet.id === id) as IWallet
+  const getWalletById = (walletId: IWallet['id']) => {
+    return wallets.value.find((wallet) => wallet.id === walletId) as IWallet
   }
 
   const createWallet = (wallet: IWallet) => {
@@ -64,8 +64,8 @@ export const useWalletStore = defineStore('wallet', () => {
     wallets.value[index] = wallet
   }
 
-  const deleteWallet = (id: IWallet['id']) => {
-    wallets.value = wallets.value.filter((wallet) => wallet.id !== id)
+  const deleteWallet = (walletId: IWallet['id']) => {
+    wallets.value = wallets.value.filter((wallet) => wallet.id !== walletId)
   }
   
 
