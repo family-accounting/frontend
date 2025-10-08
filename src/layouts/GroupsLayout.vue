@@ -14,7 +14,7 @@ const isAccountsActive = computed(() => route.name === 'AccountsView')
 <template>
   <div class="flex flex-col h-svh">
     <GroupsLayoutHeader :title="title" :version="version" />
-    <main class="flex-1">
+    <main class="flex-1 overflow-y-auto">
       <RouterView />
     </main>
     <GroupsLayoutFooter :isGroupsActive="isGroupsActive" :isWalletsActive="isWalletsActive" :isAccountsActive="isAccountsActive" />
