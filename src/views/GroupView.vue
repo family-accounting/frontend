@@ -9,16 +9,17 @@
     <p>{{ group.updatedAt }}</p>
     <p>{{ group.createdBy }}</p>
     <p>{{ group.updatedBy }}</p>
-    <p>{{ id }}</p>
+    <p>{{ groupId }}</p>
   </div>
 </template>
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import type { IGroup } from '@/interfaces/group.interface'
+import { useGroupStore } from '@/stores/group.store'
 
 const route = useRoute()
-
-const group = ref<IGroup>({} as IGroup)
-const id = computed(() => route.params.id)
+const groupStore = useGroupStore()
+const groupId = computed(() => route.params.groupId)
+const group = computed(() => groupStore.getGroupById(groupId.value as IGroup['id']))
 </script>
