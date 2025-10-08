@@ -33,7 +33,6 @@ const router = createRouter({
     {
       path: '/group',
       name: 'GroupLayout',
-      redirect: '/groups',
       component: () => import('../layouts/GroupLayout.vue'),
       children: [
         {
