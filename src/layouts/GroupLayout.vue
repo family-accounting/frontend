@@ -13,7 +13,7 @@ const isSettingsActive = computed(() => route.name === 'SettingsView')
 <template>
   <div class="flex flex-col h-svh">
     <GroupLayoutHeader :title="title" :version="version" />
-    <main class="flex-1">
+    <main class="flex-1 overflow-y-auto">
       <RouterView />
     </main>
     <GroupLayoutFooter :isTransactionsActive="isTransactionsActive" :isSettingsActive="isSettingsActive" :groupId="groupId" />
