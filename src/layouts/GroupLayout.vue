@@ -33,7 +33,12 @@ const isSettingsActive = computed(() => route.name === 'SettingsView')
           'py-2 flex-1 flex justify-center items-center',
           isTransactionsActive ? 'bg-primary text-primary-foreground' : 'bg-transparent',
         ]"
-        to="/transactions"
+        :to="{
+        name: 'TransactionsView',
+        params: {
+          groupId: route.params.groupId,
+        },
+      }"
       >
         Transactions
       </RouterLink>
@@ -43,7 +48,12 @@ const isSettingsActive = computed(() => route.name === 'SettingsView')
           'py-2 flex-1 flex justify-center items-center',
           isSettingsActive ? 'bg-primary text-primary-foreground' : 'bg-transparent',
         ]"
-        to="/settings"
+        :to="{
+        name: 'SettingsView',
+        params: {
+          groupId: route.params.groupId,
+        },
+      }"
       >
         Settings
       </RouterLink>
