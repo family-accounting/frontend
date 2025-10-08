@@ -13,8 +13,14 @@ const walletStore = useWalletStore()
     <template v-for="wallet in walletStore.wallets" :key="wallet.id">
       <UPageCard variant="ghost" :to="`/wallets/${wallet.id}`">
         <template #body>
-          <UUser :name="wallet.name" :description="wallet.description" :avatar="wallet.avatar" :color="wallet.color" :icon="wallet.icon"
-            size="xl" />
+          <UUser
+            :name="wallet.name"
+            :description="wallet.description"
+            :avatar="wallet.avatar"
+            :color="wallet.color"
+            :icon="wallet.icon"
+            size="xl"
+          />
         </template>
       </UPageCard>
     </template>

@@ -64,7 +64,6 @@ export const useGroupStore = defineStore('group', () => {
   const deleteGroup = (groupId: IGroup['id']) => {
     groups.value = groups.value.filter((group) => group.id !== groupId)
   }
-  
 
   return { groups, getGroupById, createGroup, updateGroup, deleteGroup }
 })

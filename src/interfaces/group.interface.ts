@@ -8,7 +8,7 @@ export interface IGroup {
     src: string
     alt: string
   }
-  
+
   createdAt: string
   updatedAt: string
   createdBy: IUser['id']

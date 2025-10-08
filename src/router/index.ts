@@ -41,7 +41,7 @@ const router = createRouter({
           name: 'GroupView',
           component: () => import('@/views/GroupView.vue'),
           meta: { title: 'Group - Family Accounting' },
-          children:[
+          children: [
             {
               path: 'transactions',
               name: 'TransactionsView',
@@ -53,9 +53,8 @@ const router = createRouter({
               name: 'SettingsView',
               component: () => import('@/views/GroupSettingsView.vue'),
               meta: { title: 'Settings - Family Accounting' },
-            
-            }
-          ]
+            },
+          ],
         },
       ],
     },

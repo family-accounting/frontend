@@ -1,5 +1,5 @@
 <template>
-    <div>
-        <h1>Group Settings</h1>
-    </div>
+  <UPage>
+    <h1>Group Settings</h1>
+  </UPage>
 </template>

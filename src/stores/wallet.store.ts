@@ -17,7 +17,7 @@ export const useWalletStore = defineStore('wallet', () => {
         alt: 'Family group avatar',
       },
       createdBy: 'user-1',
-      updatedBy: 'user-2'
+      updatedBy: 'user-2',
     },
     {
       id: 'wallet-2',
@@ -32,7 +32,7 @@ export const useWalletStore = defineStore('wallet', () => {
         alt: 'Vacation group avatar',
       },
       createdBy: 'user-2',
-      updatedBy: 'user-2'
+      updatedBy: 'user-2',
     },
     {
       id: 'wallet-3',
@@ -47,8 +47,8 @@ export const useWalletStore = defineStore('wallet', () => {
         alt: 'Family group avatar',
       },
       createdBy: 'user-1',
-      updatedBy: 'user-1'
-    }
+      updatedBy: 'user-1',
+    },
   ])
 
   const getWalletById = (walletId: IWallet['id']) => {
@@ -67,7 +67,6 @@ export const useWalletStore = defineStore('wallet', () => {
   const deleteWallet = (walletId: IWallet['id']) => {
     wallets.value = wallets.value.filter((wallet) => wallet.id !== walletId)
   }
-  
 
   return { wallets, getWalletById, createWallet, updateWallet, deleteWallet }
 })

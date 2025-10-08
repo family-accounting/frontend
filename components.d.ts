@@ -8,10 +8,15 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    GroupLayoutFooter: typeof import('./src/components/GroupLayoutFooter.vue')['default']
+    GroupLayoutHeader: typeof import('./src/components/GroupLayoutHeader.vue')['default']
+    GroupsLayoutFooter: typeof import('./src/components/GroupsLayoutFooter.vue')['default']
+    GroupsLayoutHeader: typeof import('./src/components/GroupsLayoutHeader.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     UApp: typeof import('./node_modules/@nuxt/ui/dist/runtime/components/App.vue')['default']
     UColorModeButton: typeof import('./node_modules/@nuxt/ui/dist/runtime/vue/components/color-mode/ColorModeButton.vue')['default']
+    UPage: typeof import('./node_modules/@nuxt/ui/dist/runtime/components/Page.vue')['default']
     UPageCard: typeof import('./node_modules/@nuxt/ui/dist/runtime/components/PageCard.vue')['default']
     UPageList: typeof import('./node_modules/@nuxt/ui/dist/runtime/components/PageList.vue')['default']
     UUser: typeof import('./node_modules/@nuxt/ui/dist/runtime/components/User.vue')['default']

@@ -18,7 +18,7 @@ export const useAccountStore = defineStore('account', () => {
         alt: 'Family group avatar',
       },
       createdBy: 'user-1',
-      updatedBy: 'user-2'
+      updatedBy: 'user-2',
     },
     {
       id: 'account-2',
@@ -33,7 +33,7 @@ export const useAccountStore = defineStore('account', () => {
         alt: 'Vacation group avatar',
       },
       createdBy: 'user-2',
-      updatedBy: 'user-2'
+      updatedBy: 'user-2',
     },
     {
       id: 'account-3',
@@ -48,8 +48,8 @@ export const useAccountStore = defineStore('account', () => {
         alt: 'Family group avatar',
       },
       createdBy: 'user-1',
-      updatedBy: 'user-1'
-    }
+      updatedBy: 'user-1',
+    },
   ])
 
   const getAccountById = (accountId: IAccount['id']) => {
@@ -68,7 +68,6 @@ export const useAccountStore = defineStore('account', () => {
   const deleteAccount = (accountId: IAccount['id']) => {
     accounts.value = accounts.value.filter((account) => account.id !== accountId)
   }
-  
 
   return { accounts, getAccountById, createAccount, updateAccount, deleteAccount }
 })
