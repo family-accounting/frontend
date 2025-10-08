@@ -14,10 +14,10 @@ const isSettingsActive = computed(() => route.name === 'SettingsView')
     <div
       class="flex justify-between items-center gap-x-4 p-4 border-b border-b-neutral-200 dark:border-b-neutral-800"
     >
-      <div class="flex items-center gap-x-2">
+      <RouterLink to="/" class="flex items-center gap-x-2">
         <img src="/logo.svg" alt="logo" class="w-10 h-10" />
         <span class="text-xs">{{ route.meta.title }}</span>
-      </div>
+      </RouterLink>
       <div class="flex items-center gap-x-2">
         <UColorModeButton class="cursor-pointer" />
         <span class="text-xs">Version: {{ version }}</span>
