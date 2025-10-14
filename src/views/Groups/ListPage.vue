@@ -8,7 +8,7 @@
         <ion-title>Family Accounting</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content>
+    <ion-content :fullscreen="true" :scroll-y="true"  class="ion-padding">
       <ion-list>
         <ion-item :detail="true" button :routerLink="`/tabs/groups/${group.id}`" v-for="group in groups"
           :key="group.id">
