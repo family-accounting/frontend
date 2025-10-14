@@ -1,0 +1,7 @@
+{
+  "name": "family-accounting",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}

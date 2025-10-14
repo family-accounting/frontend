@@ -1,5 +1,11 @@
 <template>
-  <div class="flex flex-col items-center justify-center h-svh">
-    <RouterView />
-  </div>
+  <ion-page>
+    <ion-content>
+      <ion-router-outlet></ion-router-outlet>
+    </ion-content>
+  </ion-page>
 </template>
+
+<script setup lang="ts">
+import { IonPage, IonRouterOutlet } from '@ionic/vue';
+</script>
