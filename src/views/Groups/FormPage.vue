@@ -8,12 +8,12 @@
         <ion-title slot="start">
           Family Accounting
         </ion-title>
-          <ion-button :routerLink="`/tabs/groups`" slot="end" fill="clear">
-            <ion-icon :icon="arrowBack"></ion-icon>
-          </ion-button>
+        <ion-button :routerLink="`/tabs/groups`" slot="end" fill="clear">
+          <ion-icon :icon="arrowBack"></ion-icon>
+        </ion-button>
       </ion-toolbar>
     </ion-header>
-    <ion-content>
+    <ion-content :fullscreen="true" :scroll-y="true" :padding="true" class="ion-padding">
       <form>
         <ion-item>
           <ion-label>Name</ion-label>
@@ -22,7 +22,9 @@
         <ion-item>
           <ion-label>Icon</ion-label>
           <ion-select v-model="group.icon">
-            <ion-select-option value="person">Person</ion-select-option>
+            <ion-select-option value="person">
+              <ion-icon :icon="person"></ion-icon>
+            </ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item>
@@ -35,7 +37,10 @@
           <ion-label>Description</ion-label>
           <ion-textarea v-model="group.description"></ion-textarea>
         </ion-item>
-        <ion-button type="submit">Save</ion-button>
+        <div class="ion-padding ">
+          <ion-button type="submit" expand="block">Save</ion-button>
+          <ion-button type="reset" expand="block" :routerLink="`/tabs/groups`">Cancel</ion-button>
+        </div>
       </form>
 
     </ion-content>
@@ -43,7 +48,8 @@
 </template>
 
 <script setup lang="ts">
-import { IonPage, IonContent, IonItem, IonLabel, IonInput, IonSelect, IonSelectOption, IonTextarea, IonButton, IonHeader, IonToolbar, IonTitle, IonAvatar } from '@ionic/vue';
+import { IonPage, IonContent, IonItem, IonLabel, IonInput, IonSelect, IonSelectOption, IonTextarea, 
+  IonButton, IonHeader, IonToolbar, IonTitle, IonAvatar, IonIcon } from '@ionic/vue';
 import { person, arrowBack } from 'ionicons/icons';
 import { ref } from 'vue';
 const group = ref({
