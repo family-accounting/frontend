@@ -16,31 +16,33 @@
     <ion-content :fullscreen="true" :scroll-y="true" :padding="true" class="ion-padding">
       <form>
         <ion-item>
-          <ion-label>Name</ion-label>
-          <ion-input type="text" v-model="group.name"></ion-input>
+          <ion-input type="text" v-model="group.name" label-placement="floating" label="Name"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>Icon</ion-label>
-          <ion-select v-model="group.icon">
+          <ion-select label-placement="floating" label="Icon" v-model="group.icon">
             <ion-select-option value="person">
               <ion-icon :icon="person"></ion-icon>
             </ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item>
-          <ion-label>Color</ion-label>
-          <ion-select v-model="group.color">
+          <ion-select label-placement="floating" label="Color" v-model="group.color">
             <ion-select-option value="primary">Primary</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item>
-          <ion-label>Description</ion-label>
-          <ion-textarea v-model="group.description"></ion-textarea>
+          <ion-textarea label-placement="floating" label="Description" v-model="group.description"></ion-textarea>
         </ion-item>
-        <div class="ion-padding ">
-          <ion-button type="submit" expand="block">Save</ion-button>
-          <ion-button type="reset" expand="block" :routerLink="`/tabs/groups`">Cancel</ion-button>
-        </div>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-button type="submit" expand="block">Save</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button type="reset" expand="block" :routerLink="`/tabs/groups`">Cancel</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </form>
 
     </ion-content>
@@ -48,7 +50,7 @@
 </template>
 
 <script setup lang="ts">
-import { IonPage, IonContent, IonItem, IonLabel, IonInput, IonSelect, IonSelectOption, IonTextarea, 
+import { IonPage, IonContent, IonItem, IonInput, IonSelect, IonSelectOption, IonTextarea, IonGrid, IonRow, IonCol,
   IonButton, IonHeader, IonToolbar, IonTitle, IonAvatar, IonIcon } from '@ionic/vue';
 import { person, arrowBack } from 'ionicons/icons';
 import { ref } from 'vue';

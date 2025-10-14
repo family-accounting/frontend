@@ -16,26 +16,31 @@
     <ion-content :fullscreen="true" :scroll-y="true" class="ion-padding">
       <form>
         <ion-item>
-          <ion-label>Name</ion-label>
-          <ion-input type="text" v-model="account.name"></ion-input>
+          <ion-input type="text" v-model="account.name" label-placement="floating" label="Name"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>Icon</ion-label>
-          <ion-select v-model="account.icon">
+          <ion-select label-placement="floating" label="Icon" v-model="account.icon">
             <ion-select-option value="person">Person</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item>
-          <ion-label>Color</ion-label>
-          <ion-select v-model="account.color">
+          <ion-select label-placement="floating" label="Color" v-model="account.color">
             <ion-select-option value="primary">Primary</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item>
-          <ion-label>Description</ion-label>
-          <ion-textarea v-model="account.description"></ion-textarea>
+          <ion-textarea label-placement="floating" label="Description" v-model="account.description"></ion-textarea>
         </ion-item>
-        <ion-button type="submit">Save</ion-button>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-button type="submit" expand="block">Save</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button type="reset" expand="block" :routerLink="`/tabs/accounts`">Cancel</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </form>
 
     </ion-content>
@@ -43,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import { IonPage, IonContent, IonItem, IonLabel, IonInput, IonSelect, IonSelectOption, IonTextarea, IonButton, IonHeader, IonToolbar, IonTitle, IonAvatar } from '@ionic/vue';
+import { IonPage, IonContent, IonItem, IonInput, IonSelect, IonSelectOption, IonTextarea, IonButton, IonHeader, IonToolbar, IonTitle, IonAvatar, IonGrid, IonRow, IonCol } from '@ionic/vue';
 import { person, arrowBack } from 'ionicons/icons';
 import { ref } from 'vue';
 const account = ref({

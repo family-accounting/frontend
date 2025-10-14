@@ -11,7 +11,7 @@
 
       </ion-toolbar>
     </ion-header>
-    <ion-content :fullscreen="true" :scroll-y="true" class="ion-padding">
+    <ion-content :fullscreen="true" :scroll-y="true">
       <ion-list>
         <ion-item :detail="true" button :routerLink="`/tabs/transactions/${transaction.id}`"
           v-for="transaction in transactions" :key="transaction.id">
