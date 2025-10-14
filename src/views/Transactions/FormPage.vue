@@ -13,7 +13,7 @@
         </ion-button>
       </ion-toolbar>
     </ion-header>
-    <ion-content>
+    <ion-content :fullscreen="true" :scroll-y="true"  class="ion-padding">
       <form>
         <ion-item>
           <ion-label>Name</ion-label>

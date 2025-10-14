@@ -10,7 +10,7 @@
         </ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content>
+    <ion-content :fullscreen="true" :scroll-y="true" class="ion-padding">
       <ion-list>
         <ion-item :detail="true" button :routerLink="`/tabs/accounts/${account.id}`" v-for="account in accounts"
           :key="account.id">

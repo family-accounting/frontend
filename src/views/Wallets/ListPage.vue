@@ -11,7 +11,7 @@
       </ion-toolbar>
 
     </ion-header>
-    <ion-content>
+    <ion-content :fullscreen="true" :scroll-y="true" class="ion-padding">
       <ion-list>
         <ion-item :detail="true" button :routerLink="`/tabs/wallets/${wallet.id}`" v-for="wallet in wallets"
           :key="wallet.id">
