@@ -1,8 +1,9 @@
-import { createRouter, createWebHistory } from '@ionic/vue-router';
-import { RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHistory } from '@ionic/vue-router'
+import { RouteRecordRaw } from 'vue-router'
 import MainPage from '../layouts/MainPage.vue'
 import AuthLayout from '../layouts/AuthLayout.vue'
 import LoginPage from '../views/Auth/LoginPage.vue'
+import GroupsListPage from '../views/Groups/ListPage.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -10,50 +11,108 @@ const routes: Array<RouteRecordRaw> = [
     redirect: '/tabs/groups'
   },
   {
-    path: '/auth/',
+    path: '/auth',
     component: AuthLayout,
     children: [
       {
-        path: '/auth/login',
-        component: LoginPage,
+        path: 'login',
+        name: 'Login',
+        component: LoginPage
       }
     ]
   },
   {
-    path: '/tabs/',
+    path: '/tabs',
     component: MainPage,
     children: [
       {
         path: '',
         redirect: '/tabs/groups'
       },
+
+      // -------------------
+      // GROUPS
+      // -------------------
       {
         path: 'groups',
+        name: 'GroupsList',
         component: () => import('@/views/Groups/ListPage.vue')
       },
       {
         path: 'groups/new',
+        name: 'GroupsNew',
         component: () => import('@/views/Groups/FormPage.vue')
       },
       {
         path: 'groups/:id',
+        name: 'GroupsEdit',
         component: () => import('@/views/Groups/FormPage.vue')
       },
+
+      // -------------------
+      // WALLETS
+      // -------------------
       {
         path: 'wallets',
-        component: () => import('@/views/Wallets/WalletsPage.vue')
+        name: 'WalletsList',
+        component: () => import('@/views/Wallets/ListPage.vue')
       },
+      {
+        path: 'wallets/new',
+        name: 'WalletsNew',
+        component: () => import('@/views/Wallets/FormPage.vue')
+      },
+      {
+        path: 'wallets/:id',
+        name: 'WalletsEdit',
+        component: () => import('@/views/Wallets/FormPage.vue')
+      },
+
+      // -------------------
+      // ACCOUNTS
+      // -------------------
       {
         path: 'accounts',
-        component: () => import('@/views/Accounts/AccountsPage.vue')
+        name: 'AccountsList',
+        component: () => import('@/views/Accounts/ListPage.vue')
       },
+      {
+        path: 'accounts/new',
+        name: 'AccountsNew',
+        component: () => import('@/views/Accounts/FormPage.vue')
+      },
+      {
+        path: 'accounts/:id',
+        name: 'AccountsEdit',
+        component: () => import('@/views/Accounts/FormPage.vue')
+      },
+
+      // -------------------
+      // TRANSACTIONS
+      // -------------------
       {
         path: 'transactions',
-        component: () => import('@/views/Transactions/TransactionsPage.vue')
+        name: 'TransactionsList',
+        component: () => import('@/views/Transactions/ListPage.vue')
       },
       {
+        path: 'transactions/new',
+        name: 'TransactionsNew',
+        component: () => import('@/views/Transactions/FormPage.vue')
+      },
+      {
+        path: 'transactions/:id',
+        name: 'TransactionsEdit',
+        component: () => import('@/views/Transactions/FormPage.vue')
+      },
+
+      // -------------------
+      // REPORTS
+      // -------------------
+      {
         path: 'reports',
-        component: () => import('@/views/Reports/ReportsPage.vue')
+        name: 'ReportsList',
+        component: () => import('@/views/Reports/ListPage.vue')
       }
     ]
   }

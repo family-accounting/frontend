@@ -1,5 +1,16 @@
 <template>
   <ion-page>
+    <ion-header>
+      <ion-toolbar>
+        <ion-avatar aria-hidden="true" slot="start">
+          <img src="/logo.svg" />
+        </ion-avatar>
+        <ion-title slot="start">
+          Family Accounting
+        </ion-title>
+      </ion-toolbar>
+
+    </ion-header>
     <ion-content>
       <ion-list>
         <ion-item :detail="true" button :routerLink="`/tabs/wallets/${wallet.id}`" v-for="wallet in wallets"

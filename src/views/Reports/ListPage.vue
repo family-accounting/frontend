@@ -1,5 +1,15 @@
 <template>
   <ion-page>
+    <ion-header>
+      <ion-toolbar>
+        <ion-avatar aria-hidden="true" slot="start">
+          <img src="/logo.svg" />
+        </ion-avatar>
+        <ion-title slot="start">
+          Family Accounting
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
     <ion-content>
       <ion-list>
         <ion-item :detail="true" button :routerLink="`/tabs/wallets/${wallet.id}`" v-for="wallet in wallets"
@@ -20,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import { IonPage, IonContent, IonList, IonItem, IonLabel, IonIcon, IonFab, IonFabButton } from '@ionic/vue';
+import { IonPage, IonContent, IonList, IonItem, IonLabel, IonIcon, IonFab, IonFabButton, IonHeader, IonToolbar, IonTitle, IonAvatar } from '@ionic/vue';
 import { person, people, business, add } from 'ionicons/icons';
 import { ref } from 'vue';
 const wallets = ref([

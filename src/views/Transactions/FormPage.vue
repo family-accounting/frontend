@@ -8,32 +8,32 @@
         <ion-title slot="start">
           Family Accounting
         </ion-title>
-          <ion-button :routerLink="`/tabs/groups`" slot="end" fill="clear">
-            <ion-icon :icon="arrowBack"></ion-icon>
-          </ion-button>
+        <ion-button :routerLink="`/tabs/transactions`" slot="end" fill="clear">
+          <ion-icon :icon="arrowBack"></ion-icon>
+        </ion-button>
       </ion-toolbar>
     </ion-header>
     <ion-content>
       <form>
         <ion-item>
           <ion-label>Name</ion-label>
-          <ion-input type="text" v-model="group.name"></ion-input>
+          <ion-input type="text" v-model="transaction.name"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Icon</ion-label>
-          <ion-select v-model="group.icon">
+          <ion-select v-model="transaction.icon">
             <ion-select-option value="person">Person</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item>
           <ion-label>Color</ion-label>
-          <ion-select v-model="group.color">
+          <ion-select v-model="transaction.color">
             <ion-select-option value="primary">Primary</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item>
           <ion-label>Description</ion-label>
-          <ion-textarea v-model="group.description"></ion-textarea>
+          <ion-textarea v-model="transaction.description"></ion-textarea>
         </ion-item>
         <ion-button type="submit">Save</ion-button>
       </form>
@@ -46,7 +46,7 @@
 import { IonPage, IonContent, IonItem, IonLabel, IonInput, IonSelect, IonSelectOption, IonTextarea, IonButton, IonHeader, IonToolbar, IonTitle, IonAvatar } from '@ionic/vue';
 import { person, arrowBack } from 'ionicons/icons';
 import { ref } from 'vue';
-const group = ref({
+const transaction = ref({
   name: '',
   icon: person,
   color: 'primary',
