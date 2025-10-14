@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
 import MainPage from '../layouts/MainPage.vue'
 import AuthLayout from '../layouts/AuthLayout.vue'
-import LoginPage from '../views/LoginPage.vue'
+import LoginPage from '../views/Auth/LoginPage.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -29,19 +29,31 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: 'groups',
-        component: () => import('@/views/GroupsPage.vue')
+        component: () => import('@/views/Groups/ListPage.vue')
+      },
+      {
+        path: 'groups/new',
+        component: () => import('@/views/Groups/FormPage.vue')
+      },
+      {
+        path: 'groups/:id',
+        component: () => import('@/views/Groups/FormPage.vue')
       },
       {
         path: 'wallets',
-        component: () => import('@/views/WalletsPage.vue')
+        component: () => import('@/views/Wallets/WalletsPage.vue')
       },
       {
         path: 'accounts',
-        component: () => import('@/views/AccountsPage.vue')
+        component: () => import('@/views/Accounts/AccountsPage.vue')
       },
       {
         path: 'transactions',
-        component: () => import('@/views/TransactionsPage.vue')
+        component: () => import('@/views/Transactions/TransactionsPage.vue')
+      },
+      {
+        path: 'reports',
+        component: () => import('@/views/Reports/ReportsPage.vue')
       }
     ]
   }

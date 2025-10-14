@@ -1,5 +1,15 @@
 <template>
   <ion-page>
+    <ion-header>
+      <ion-toolbar>
+        <ion-avatar aria-hidden="true" slot="start">
+          <img src="/logo.svg" />
+        </ion-avatar>
+        <ion-title slot="start">
+          Family Accounting
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
     <ion-tabs>
       <ion-router-outlet></ion-router-outlet>
       <ion-tab-bar slot="bottom">
@@ -23,12 +33,18 @@
           <ion-icon aria-hidden="true" :icon="swapHorizontal" />
           <ion-label>Transactions</ion-label>
         </ion-tab-button>
+
+
+        <ion-tab-button tab="reports" href="/tabs/reports">
+          <ion-icon aria-hidden="true" :icon="statsChart" />
+          <ion-label>Reports</ion-label>
+        </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
   </ion-page>
 </template>
 
 <script setup lang="ts">
-import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
-import { people, wallet, person, swapHorizontal } from 'ionicons/icons';
+import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonRouterOutlet, IonHeader, IonToolbar, IonTitle, IonAvatar,IonPage } from '@ionic/vue';
+import { people, wallet, person, swapHorizontal, statsChart } from 'ionicons/icons';
 </script>
