@@ -1,11 +1,11 @@
 <template>
-  <ion-page>
-    <ion-content>
-      <ion-router-outlet></ion-router-outlet>
-    </ion-content>
-  </ion-page>
+  <IonPage>
+    <IonContent>
+      <IonRouterOutlet></IonRouterOutlet>
+    </IonContent>
+  </IonPage>
 </template>
 
 <script setup lang="ts">
-import { IonPage, IonRouterOutlet } from '@ionic/vue';
+import { IonPage, IonRouterOutlet, IonContent } from '@ionic/vue';
 </script>

@@ -1,0 +1,39 @@
+<template>
+  <IonPage>
+    <IonTabs>
+      <IonRouterOutlet></IonRouterOutlet>
+      <IonTabBar slot="bottom">
+        <IonTabButton tab="transactions" :href="`/group/${groupId}/transactions`">
+          <IonIcon aria-hidden="true" :icon="swapHorizontal" />
+          <IonLabel>Transactions</IonLabel>
+        </IonTabButton>
+
+        <IonTabButton tab="members" :href="`/group/${groupId}/members`">
+          <IonIcon aria-hidden="true" :icon="people" />
+          <IonLabel>Members</IonLabel>
+        </IonTabButton>
+
+        <IonTabButton tab="reports" :href="`/group/${groupId}/reports`">
+          <IonIcon aria-hidden="true" :icon="statsChart" />
+          <IonLabel>Reports</IonLabel>
+        </IonTabButton>
+
+        <IonTabButton tab="settings" :href="`/group/${groupId}/settings`">
+          <IonIcon aria-hidden="true" :icon="settings" />
+          <IonLabel>Settings</IonLabel>
+        </IonTabButton>
+
+      </IonTabBar>
+    </IonTabs>
+  </IonPage>
+</template>
+
+<script setup lang="ts">
+import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonRouterOutlet, IonPage } from '@ionic/vue';
+import { people, swapHorizontal, statsChart, settings } from 'ionicons/icons';
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
+const route = useRoute();
+const groupId = computed(() => route.params.groupId);
+
+</script>

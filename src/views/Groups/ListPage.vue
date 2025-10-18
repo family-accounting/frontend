@@ -1,39 +1,37 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-avatar slot="start">
+  <IonPage>
+    <IonHeader>
+      <IonToolbar>
+        <IonAvatar slot="start">
           <img src="/logo.svg" />
-        </ion-avatar>
-        <ion-title>Family Accounting</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content :fullscreen="true" :scroll-y="true">
-      <ion-refresher slot="fixed" @ionRefresh="handleRefresh($event)">
-        <ion-refresher-content></ion-refresher-content>
-      </ion-refresher>
-      <ion-searchbar v-model="search" placeholder="Search"></ion-searchbar>
-
-      <ion-list>
-        <ion-reorder-group :disabled="false" @ionReorderEnd="handleReorderEnd($event)">
-
-          <ion-item :detail="true" button :routerLink="`/tabs/groups/${group.id}`" v-for="group in filteredGroups"
+        </IonAvatar>
+        <IonTitle>Family Accounting</IonTitle>
+      </IonToolbar>
+    </IonHeader>
+    <IonContent :fullscreen="true" :scroll-y="true">
+      <IonRefresher slot="fixed" @ionRefresh="handleRefresh($event)">
+        <IonRefresherContent></IonRefresherContent>
+      </IonRefresher>
+      <IonSearchbar v-model="search" placeholder="Search"></IonSearchbar>
+      <IonList>
+        <IonReorderGroup :disabled="false" @ionReorderEnd="handleReorderEnd($event)">
+          <IonItem :detail="true" button :routerLink="`/group/${group.id}/transactions`" v-for="group in filteredGroups"
             :key="group.id">
-            <ion-reorder slot="start"></ion-reorder>
-            <ion-icon aria-hidden="true" :icon="getIcon(group.icon)" slot="start"></ion-icon>
-            <ion-label>
+            <IonReorder slot="start"></IonReorder>
+            <IonIcon aria-hidden="true" :icon="getIcon(group.icon)" slot="start"></IonIcon>
+            <IonLabel>
               <h2>{{ group.name }}</h2>
-            </ion-label>
-          </ion-item>
-        </ion-reorder-group>
-      </ion-list>
-      <ion-fab vertical="bottom" horizontal="start" slot="fixed">
-        <ion-fab-button routerLink="/tabs/groups/new">
-          <ion-icon :icon="add"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
-    </ion-content>
-  </ion-page>
+            </IonLabel>
+          </IonItem>
+        </IonReorderGroup>
+      </IonList>
+      <IonFab vertical="bottom" horizontal="start" slot="fixed">
+        <IonFabButton routerLink="/tabs/groups/new">
+          <IonIcon :icon="add"></IonIcon>
+        </IonFabButton>
+      </IonFab>
+    </IonContent>
+  </IonPage>
 </template>
 
 <script setup lang="ts">

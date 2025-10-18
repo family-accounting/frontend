@@ -1,38 +1,19 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router'
 import { RouteRecordRaw } from 'vue-router'
-import MainPage from '../layouts/MainPage.vue'
+import MainPage from '../layouts/MainLayout.vue'
+import GroupLayout from '../layouts/GroupLayout.vue'
 import AuthLayout from '../layouts/AuthLayout.vue'
 import LoginPage from '../views/Auth/LoginPage.vue'
-import GroupsListPage from '../views/Groups/ListPage.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/tabs/groups'
-  },
-  {
-    path: '/auth',
-    component: AuthLayout,
-    children: [
-      {
-        path: 'login',
-        name: 'Login',
-        component: LoginPage
-      }
-    ]
-  },
-  {
-    path: '/tabs',
     component: MainPage,
     children: [
       {
         path: '',
-        redirect: '/tabs/groups'
+        redirect: '/groups'
       },
-
-      // -------------------
-      // GROUPS
-      // -------------------
       {
         path: 'groups',
         name: 'GroupsList',
@@ -48,10 +29,6 @@ const routes: Array<RouteRecordRaw> = [
         name: 'GroupsEdit',
         component: () => import('@/views/Groups/FormPage.vue')
       },
-
-      // -------------------
-      // WALLETS
-      // -------------------
       {
         path: 'wallets',
         name: 'WalletsList',
@@ -67,10 +44,6 @@ const routes: Array<RouteRecordRaw> = [
         name: 'WalletsEdit',
         component: () => import('@/views/Wallets/FormPage.vue')
       },
-
-      // -------------------
-      // ACCOUNTS
-      // -------------------
       {
         path: 'accounts',
         name: 'AccountsList',
@@ -86,10 +59,6 @@ const routes: Array<RouteRecordRaw> = [
         name: 'AccountsEdit',
         component: () => import('@/views/Accounts/FormPage.vue')
       },
-
-      // -------------------
-      // TRANSACTIONS
-      // -------------------
       {
         path: 'transactions',
         name: 'TransactionsList',
@@ -105,17 +74,52 @@ const routes: Array<RouteRecordRaw> = [
         name: 'TransactionsEdit',
         component: () => import('@/views/Transactions/FormPage.vue')
       },
-
-      // -------------------
-      // REPORTS
-      // -------------------
       {
         path: 'reports',
         name: 'ReportsList',
         component: () => import('@/views/Reports/ListPage.vue')
       }
     ]
-  }
+  },
+  {
+    path: '/group',
+    name: 'TheGroup',
+    component: GroupLayout,
+    children: [
+      {
+        path: ':groupId/transactions',
+        name: 'GroupTransactions',
+        component: () => import('@/views/Group/GroupTransactions.vue')
+      },
+      {
+        path: ':groupId/members',
+        name: 'GroupUsers',
+        component: () => import('@/views/Group/GroupMembers.vue')
+      },
+      {
+        path: ':groupId/reports',
+        name: 'GroupReports',
+        component: () => import('@/views/Group/GroupReports.vue')
+      },
+      {
+        path: ':groupId/settings',
+        name: 'GroupSettings',
+        component: () => import('@/views/Group/GroupSettings.vue')
+      }
+
+    ]
+  },
+  {
+    path: '/auth',
+    component: AuthLayout,
+    children: [
+      {
+        path: 'login',
+        name: 'Login',
+        component: LoginPage
+      }
+    ]
+  },
 ]
 
 const router = createRouter({

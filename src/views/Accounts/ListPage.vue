@@ -1,35 +1,35 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-avatar aria-hidden="true" slot="start">
+  <IonPage>
+    <IonHeader>
+      <IonToolbar>
+        <IonAvatar aria-hidden="true" slot="start">
           <img src="/logo.svg" />
-        </ion-avatar>
-        <ion-title slot="start">
+        </IonAvatar>
+        <IonTitle slot="start">
           Family Accounting
-        </ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content :fullscreen="true" :scroll-y="true">
-      <ion-refresher slot="fixed" @ionRefresh="handleRefresh($event)">
-        <ion-refresher-content></ion-refresher-content>
-      </ion-refresher>
-      <ion-list>
-        <ion-item :detail="true" button :routerLink="`/tabs/accounts/${account.id}`" v-for="account in accounts"
+        </IonTitle>
+      </IonToolbar>
+    </IonHeader>
+    <IonContent :fullscreen="true" :scroll-y="true">
+      <IonRefresher slot="fixed" @ionRefresh="handleRefresh($event)">
+        <IonRefresherContent></IonRefresherContent>
+      </IonRefresher>
+      <IonList>
+        <IonItem :detail="true" button :routerLink="`/tabs/accounts/${account.id}`" v-for="account in accounts"
           :key="account.id">
-          <ion-icon aria-hidden="true" :icon="account.icon" slot="start"></ion-icon>
-          <ion-label>
+          <IonIcon aria-hidden="true" :icon="account.icon" slot="start"></IonIcon>
+          <IonLabel>
             <h2>{{ account.name }}</h2>
-          </ion-label>
-        </ion-item>
-      </ion-list>
-      <ion-fab vertical="bottom" horizontal="start" slot="fixed">
-        <ion-fab-button routerLink="/tabs/accounts/new">
-          <ion-icon :icon="add"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
-    </ion-content>
-  </ion-page>
+          </IonLabel>
+        </IonItem>
+      </IonList>
+      <IonFab vertical="bottom" horizontal="start" slot="fixed">
+        <IonFabButton routerLink="/tabs/accounts/new">
+          <IonIcon :icon="add"></IonIcon>
+        </IonFabButton>
+      </IonFab>
+    </IonContent>
+  </IonPage>
 </template>
 
 <script setup lang="ts">

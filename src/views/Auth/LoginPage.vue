@@ -1,8 +1,7 @@
 <template>
-    <ion-item>
-        <ion-input label="Email"></ion-input>
-    </ion-item>
-
+    <IonItem>
+        <IonInput label="Email"></IonInput>
+    </IonItem>
 </template>
 <script setup lang="ts">
 import { IonItem, IonInput } from '@ionic/vue';
