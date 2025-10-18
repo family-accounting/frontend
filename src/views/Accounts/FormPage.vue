@@ -50,11 +50,21 @@
 <script setup lang="ts">
 import { IonPage, IonContent, IonItem, IonInput, IonSelect, IonSelectOption, IonTextarea, IonButton, IonHeader, IonToolbar, IonTitle, IonAvatar, IonGrid, IonRow, IonCol } from '@ionic/vue';
 import { person, arrowBack } from 'ionicons/icons';
-import { ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
 const account = ref({
   name: '',
   icon: person,
   color: 'primary',
   description: '',
 });
+
+const route = useRoute();
+
+const id = computed(() => route.params.id);
+onMounted(() => {
+  if (id.value) {
+    // get account from API
+  }
+})
 </script>
