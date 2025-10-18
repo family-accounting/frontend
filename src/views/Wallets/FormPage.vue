@@ -2,13 +2,13 @@
   <IonPage>
     <IonHeader>
       <IonToolbar>
-          <IonAvatar aria-hidden="true" slot="start">
+        <IonAvatar aria-hidden="true" slot="start">
           <img src="/logo.svg" />
         </IonAvatar>
-          <IonTitle slot="start">
+        <IonTitle slot="start">
           Family Accounting
         </IonTitle>
-        <IonButton :routerLink="`/tabs/wallets`" slot="end" fill="clear">
+        <IonButton :routerLink="`/wallets`" slot="end" fill="clear">
           <IonIcon :icon="arrowBack"></IonIcon>
         </IonButton>
       </IonToolbar>
@@ -37,7 +37,7 @@
               <IonButton type="submit" expand="block">Save</IonButton>
             </IonCol>
             <IonCol>
-              <IonButton type="reset" expand="block" :routerLink="`/tabs/wallets`">Cancel</IonButton>
+              <IonButton type="reset" expand="block" :routerLink="`/wallets`">Cancel</IonButton>
             </IonCol>
           </IonRow>
         </IonGrid>

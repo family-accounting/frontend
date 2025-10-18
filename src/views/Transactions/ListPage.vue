@@ -2,7 +2,7 @@
   <IonPage>
     <IonHeader>
       <IonToolbar>
-          <IonAvatar aria-hidden="true" slot="start">
+        <IonAvatar aria-hidden="true" slot="start">
           <img src="/logo.svg" />
         </IonAvatar>
         <IonTitle slot="start">
@@ -16,7 +16,7 @@
         <IonRefresherContent></IonRefresherContent>
       </IonRefresher>
       <IonList>
-        <IonItem :detail="true" button :routerLink="`/tabs/transactions/${transaction.id}`"
+        <IonItem :detail="true" button :routerLink="`/transactions/${transaction.id}`"
           v-for="transaction in transactions" :key="transaction.id">
           <IonIcon aria-hidden="true" :icon="transaction.icon" slot="start"></IonIcon>
           <IonLabel>
@@ -25,7 +25,7 @@
         </IonItem>
       </IonList>
       <IonFab vertical="bottom" horizontal="start" slot="fixed">
-        <IonFabButton routerLink="/tabs/transactions/new">
+        <IonFabButton routerLink="/transactions/new">
           <IonIcon :icon="add"></IonIcon>
         </IonFabButton>
       </IonFab>
@@ -58,7 +58,7 @@ const transactions = ref([
   { id: 2, name: 'Transaction 2', icon: people, },
   { id: 3, name: 'Transaction 3', icon: business, },
   { id: 4, name: 'Transaction 4', icon: add, },
-]); 
+]);
 
 const handleRefresh = (event: RefresherCustomEvent) => {
   setTimeout(() => {

@@ -8,7 +8,7 @@
         <IonTitle slot="start">
           Family Accounting
         </IonTitle>
-        <IonButton :routerLink="`/tabs/accounts`" slot="end" fill="clear">
+        <IonButton :routerLink="`/accounts`" slot="end" fill="clear">
           <IonIcon :icon="arrowBack"></IonIcon>
         </IonButton>
       </IonToolbar>
@@ -37,7 +37,7 @@
               <IonButton type="submit" expand="block">Save</IonButton>
             </IonCol>
             <IonCol>
-              <IonButton type="reset" expand="block" :routerLink="`/tabs/accounts`">Cancel</IonButton>
+              <IonButton type="reset" expand="block" :routerLink="`/accounts`">Cancel</IonButton>
             </IonCol>
           </IonRow>
         </IonGrid>

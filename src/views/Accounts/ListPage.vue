@@ -15,7 +15,7 @@
         <IonRefresherContent></IonRefresherContent>
       </IonRefresher>
       <IonList>
-        <IonItem :detail="true" button :routerLink="`/tabs/accounts/${account.id}`" v-for="account in accounts"
+        <IonItem :detail="true" button :routerLink="`/accounts/${account.id}`" v-for="account in accounts"
           :key="account.id">
           <IonIcon aria-hidden="true" :icon="account.icon" slot="start"></IonIcon>
           <IonLabel>
@@ -24,7 +24,7 @@
         </IonItem>
       </IonList>
       <IonFab vertical="bottom" horizontal="start" slot="fixed">
-        <IonFabButton routerLink="/tabs/accounts/new">
+        <IonFabButton routerLink="/accounts/new">
           <IonIcon :icon="add"></IonIcon>
         </IonFabButton>
       </IonFab>

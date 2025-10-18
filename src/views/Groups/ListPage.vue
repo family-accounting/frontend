@@ -26,7 +26,7 @@
         </IonReorderGroup>
       </IonList>
       <IonFab vertical="bottom" horizontal="start" slot="fixed">
-        <IonFabButton routerLink="/tabs/groups/new">
+        <IonFabButton routerLink="/groups/new">
           <IonIcon :icon="add"></IonIcon>
         </IonFabButton>
       </IonFab>

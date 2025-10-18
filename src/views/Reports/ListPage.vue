@@ -17,8 +17,7 @@
       </IonRefresher>
 
       <IonList>
-        <IonItem :detail="true" button :routerLink="`/tabs/reports/${report.id}`" v-for="report in reports"
-          :key="report.id">
+        <IonItem :detail="true" button :routerLink="`/reports/${report.id}`" v-for="report in reports" :key="report.id">
           <IonIcon aria-hidden="true" :icon="report.icon" slot="start"></IonIcon>
           <IonLabel>
             <h2>{{ report.name }}</h2>
@@ -26,7 +25,7 @@
         </IonItem>
       </IonList>
       <IonFab vertical="bottom" horizontal="start" slot="fixed">
-        <IonFabButton routerLink="/tabs/reports/new">
+        <IonFabButton routerLink="/reports/new">
           <IonIcon :icon="add"></IonIcon>
         </IonFabButton>
       </IonFab>

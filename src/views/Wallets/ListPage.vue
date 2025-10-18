@@ -18,7 +18,7 @@
       </IonRefresher>
 
       <IonList>
-        <IonItem :detail="true" button :routerLink="`/tabs/wallets/${wallet.id}`" v-for="wallet in wallets"
+        <IonItem :detail="true" button :routerLink="`/wallets/${wallet.id}`" v-for="wallet in wallets"
           :key="wallet.id">
           <IonIcon aria-hidden="true" :icon="wallet.icon" slot="start"></IonIcon>
           <IonLabel>
@@ -27,7 +27,7 @@
         </IonItem>
       </IonList>
       <IonFab vertical="bottom" horizontal="start" slot="fixed">
-        <IonFabButton routerLink="/tabs/wallets/new">
+        <IonFabButton routerLink="/wallets/new">
           <IonIcon :icon="add"></IonIcon>
         </IonFabButton>
       </IonFab>
