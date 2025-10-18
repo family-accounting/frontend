@@ -10,7 +10,10 @@
         </ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content :fullscreen="true" :scroll-y="true" class="ion-padding">
+    <ion-content :fullscreen="true" :scroll-y="true">
+      <ion-refresher slot="fixed" @ionRefresh="handleRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
       <ion-list>
         <ion-item :detail="true" button :routerLink="`/tabs/accounts/${account.id}`" v-for="account in accounts"
           :key="account.id">
@@ -30,7 +33,23 @@
 </template>
 
 <script setup lang="ts">
-import { IonPage, IonContent, IonList, IonItem, IonLabel, IonIcon, IonFab, IonFabButton, IonHeader, IonToolbar, IonTitle, IonAvatar } from '@ionic/vue';
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonAvatar,
+  IonContent,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonIcon,
+  IonFab,
+  IonFabButton,
+  IonRefresher,
+  IonRefresherContent,
+  RefresherCustomEvent,
+} from '@ionic/vue';
 import { person, people, business, add } from 'ionicons/icons';
 import { ref } from 'vue';
 const accounts = ref([
@@ -38,5 +57,12 @@ const accounts = ref([
   { id: 2, name: 'SamanBank', icon: people, },
   { id: 3, name: 'BlueBank', icon: business, },
   { id: 4, name: 'SaderatBank', icon: add, },
-]); 
+]);
+
+const handleRefresh = (event: RefresherCustomEvent) => {
+  setTimeout(() => {
+    // Any calls to load data go here
+    event.target.complete();
+  }, 2000);
+};
 </script>

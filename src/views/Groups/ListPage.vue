@@ -8,7 +8,10 @@
         <ion-title>Family Accounting</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content :fullscreen="true" :scroll-y="true"  class="ion-padding">
+    <ion-content :fullscreen="true" :scroll-y="true">
+      <ion-refresher slot="fixed" @ionRefresh="handleRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
       <ion-list>
         <ion-item :detail="true" button :routerLink="`/tabs/groups/${group.id}`" v-for="group in groups"
           :key="group.id">
@@ -29,7 +32,21 @@
 
 <script setup lang="ts">
 import {
-  IonList, IonItem, IonLabel, IonIcon, IonFab, IonFabButton, IonContent, IonHeader, IonToolbar, IonTitle, IonAvatar, IonPage,
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonAvatar,
+  IonContent,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonIcon,
+  IonFab,
+  IonFabButton,
+  IonRefresher,
+  IonRefresherContent,
+  RefresherCustomEvent,
 } from '@ionic/vue';
 import { person, people, business, add } from 'ionicons/icons';
 import { ref } from 'vue';
@@ -40,4 +57,11 @@ const groups = ref([
   { id: 3, name: 'Work', icon: business, },
   { id: 4, name: 'Other', icon: add, },
 ]);
+
+const handleRefresh = (event: RefresherCustomEvent) => {
+  setTimeout(() => {
+    // Any calls to load data go here
+    event.target.complete();
+  }, 2000);
+};
 </script>

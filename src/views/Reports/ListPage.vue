@@ -11,6 +11,11 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
+
+      <ion-refresher slot="fixed" @ionRefresh="handleRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+
       <ion-list>
         <ion-item :detail="true" button :routerLink="`/tabs/wallets/${wallet.id}`" v-for="wallet in wallets"
           :key="wallet.id">
@@ -30,7 +35,23 @@
 </template>
 
 <script setup lang="ts">
-import { IonPage, IonContent, IonList, IonItem, IonLabel, IonIcon, IonFab, IonFabButton, IonHeader, IonToolbar, IonTitle, IonAvatar } from '@ionic/vue';
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonAvatar,
+  IonContent,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonIcon,
+  IonFab,
+  IonFabButton,
+  IonRefresher,
+  IonRefresherContent,
+  RefresherCustomEvent,
+} from '@ionic/vue';
 import { person, people, business, add } from 'ionicons/icons';
 import { ref } from 'vue';
 const wallets = ref([
@@ -38,5 +59,12 @@ const wallets = ref([
   { id: 2, name: 'CarWallet', icon: people, },
   { id: 3, name: 'TravelWallet', icon: business, },
   { id: 4, name: 'OtherWallet', icon: add, },
-]); 
+]);
+
+const handleRefresh = (event: RefresherCustomEvent) => {
+  setTimeout(() => {
+    // Any calls to load data go here
+    event.target.complete();
+  }, 2000);
+};
 </script>
