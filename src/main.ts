@@ -2,7 +2,6 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router';
 import { createPinia } from 'pinia';
-
 import { IonicVue } from '@ionic/vue';
 
 /* Core CSS required for Ionic components to work properly */
@@ -35,12 +34,19 @@ import '@ionic/vue/css/palettes/dark.system.css';
 /* Theme variables */
 import './theme/variables.css';
 
+
+// i18n
+import {i18next} from './i18n';
+import I18NextVue from 'i18next-vue';
+
+
 const pinia = createPinia();
 
 const app = createApp(App)
   .use(IonicVue)
   .use(pinia)
-  .use(router);
+  .use(router)
+  .use(I18NextVue, {i18next});
 
 router.isReady().then(() => {
   app.mount('#app');
