@@ -8,14 +8,19 @@
 import { IonApp, IonRouterOutlet } from '@ionic/vue';
 import { useTranslation } from 'i18next-vue';
 import { useHead } from '@vueuse/head';
+import { computed } from 'vue';
 // dynamic title
 const { t } = useTranslation();
+
+const title = computed(() => t('appName'));
+const description = computed(() => t('appDescription'));
+
 useHead({
-  title: t('appName'),
+  title: title.value,
   meta: [
     {
       name: 'description',
-      content: t('appDescription'),
+      content: description.value,
     },
   ],
 });
