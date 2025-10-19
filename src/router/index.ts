@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from "@ionic/vue-router";
 import { RouteRecordRaw } from "vue-router";
-import MainPage from "../layouts/MainLayout.vue";
-import GroupLayout from "../layouts/GroupLayout.vue";
-import AuthLayout from "../layouts/AuthLayout.vue";
-import LoginPage from "../views/Auth/LoginPage.vue";
+
+// Lazy load layouts for better code splitting
+const MainPage = () => import("../layouts/MainLayout.vue");
+const GroupLayout = () => import("../layouts/GroupLayout.vue");
+const AuthLayout = () => import("../layouts/AuthLayout.vue");
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -115,7 +116,7 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "login",
         name: "Login",
-        component: LoginPage,
+        component: () => import("@/views/Auth/LoginPage.vue"),
       },
     ],
   },

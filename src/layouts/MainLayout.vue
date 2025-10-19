@@ -86,7 +86,6 @@ import { useTranslation } from 'i18next-vue';
 import { i18next } from '@/i18n';
 const { t } = useTranslation();
 const handleLanguageChange = (event: CustomEvent<HTMLIonRadioGroupElement>) => {
-  console.log("🚀 ~ handleLanguageChange ~ event:", event)
   i18next.changeLanguage(event.detail.value);
 };
 </script>

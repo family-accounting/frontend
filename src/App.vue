@@ -9,7 +9,8 @@ import { IonApp, IonRouterOutlet } from '@ionic/vue';
 import { useTranslation } from 'i18next-vue';
 import { useHead } from '@vueuse/head';
 import { computed } from 'vue';
-// dynamic title
+
+// Dynamic title and description for better SEO
 const { t } = useTranslation();
 
 const title = computed(() => t('appName'));
@@ -22,6 +23,7 @@ useHead({
       name: 'description',
       content: description.value,
     },
+    // Performance hint: viewport is already in index.html
   ],
 });
 </script>

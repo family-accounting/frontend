@@ -1,6 +1,17 @@
-Chrome >=79
-ChromeAndroid >=79
-Firefox >=70
-Edge >=79
-Safari >=14
-iOS >=14
+# Modern browsers only - reduces polyfill overhead
+# This aligns with the 39 KiB savings mentioned in Lighthouse report
+
+# Last 2 versions of major browsers
+last 2 Chrome versions
+last 2 Firefox versions
+last 2 Safari versions
+last 2 Edge versions
+
+# Modern mobile browsers
+last 2 iOS versions
+last 2 Android versions
+
+# Exclude older browsers
+not IE 11
+not dead
+> 0.5%
