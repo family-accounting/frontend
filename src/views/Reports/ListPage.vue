@@ -5,20 +5,27 @@
         <IonAvatar aria-hidden="true" slot="start">
           <img src="/logo.svg" />
         </IonAvatar>
-        <IonTitle slot="start">
-          Family Accounting
-        </IonTitle>
+        <IonTitle slot="start"> Family Accounting </IonTitle>
       </IonToolbar>
     </IonHeader>
     <IonContent :fullscreen="true" :scroll-y="true">
-
       <IonRefresher slot="fixed" @ionRefresh="handleRefresh($event)">
         <IonRefresherContent></IonRefresherContent>
       </IonRefresher>
 
       <IonList>
-        <IonItem :detail="true" button :routerLink="`/reports/${report.id}`" v-for="report in reports" :key="report.id">
-          <IonIcon aria-hidden="true" :icon="report.icon" slot="start"></IonIcon>
+        <IonItem
+          :detail="true"
+          button
+          :routerLink="`/reports/${report.id}`"
+          v-for="report in reports"
+          :key="report.id"
+        >
+          <IonIcon
+            aria-hidden="true"
+            :icon="report.icon"
+            slot="start"
+          ></IonIcon>
           <IonLabel>
             <h2>{{ report.name }}</h2>
           </IonLabel>
@@ -50,14 +57,14 @@ import {
   IonRefresher,
   IonRefresherContent,
   RefresherCustomEvent,
-} from '@ionic/vue';
-import { person, people, business, add } from 'ionicons/icons';
-import { ref } from 'vue';
+} from "@ionic/vue";
+import { person, people, business, add } from "ionicons/icons";
+import { ref } from "vue";
 const reports = ref([
-  { id: 1, name: 'HomeReport', icon: person, },
-  { id: 2, name: 'CarReport', icon: people, },
-  { id: 3, name: 'TravelReport', icon: business, },
-  { id: 4, name: 'OtherReport', icon: add, },
+  { id: 1, name: "HomeReport", icon: person },
+  { id: 2, name: "CarReport", icon: people },
+  { id: 3, name: "TravelReport", icon: business },
+  { id: 4, name: "OtherReport", icon: add },
 ]);
 
 const handleRefresh = (event: RefresherCustomEvent) => {

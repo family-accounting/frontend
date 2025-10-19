@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  inquiryhub-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    container_name: inquiryhub-ui
+    networks:
+      - inquiryhub-network
+
+networks:
+  inquiryhub-network:
+    driver: bridge

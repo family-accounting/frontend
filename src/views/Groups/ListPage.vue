@@ -2,12 +2,14 @@
   <IonPage>
     <IonHeader>
       <IonToolbar>
-        <IonAvatar aria-hidden="true" slot="start">
+        <IonButtons slot="start">
+          <IonMenuButton></IonMenuButton>
+        </IonButtons>
+        <IonAvatar aria-hidden="true">
           <img src="/logo.svg" />
         </IonAvatar>
-        <IonTitle slot="start">
-          Family Accounting
-        </IonTitle>
+
+        <IonTitle> Family Accounting </IonTitle>
         <IonButtons slot="end">
           <IonButton fill="clear" @click="showSearch = !showSearch">
             <IonIcon :icon="search"></IonIcon>
@@ -19,13 +21,29 @@
       <IonRefresher slot="fixed" @ionRefresh="handleRefresh($event)">
         <IonRefresherContent></IonRefresherContent>
       </IonRefresher>
-      <IonSearchbar v-if="showSearch" v-model="searchText" placeholder="Search"></IonSearchbar>
+      <IonSearchbar
+        v-if="showSearch"
+        v-model="searchText"
+        placeholder="Search"
+      ></IonSearchbar>
       <IonList>
-        <IonReorderGroup :disabled="false" @ionReorderEnd="handleReorderEnd($event)">
-          <IonItem :detail="true" button :routerLink="`/group/${group.id}/transactions`" v-for="group in filteredGroups"
-            :key="group.id">
+        <IonReorderGroup
+          :disabled="false"
+          @ionReorderEnd="handleReorderEnd($event)"
+        >
+          <IonItem
+            :detail="true"
+            button
+            :routerLink="`/group/${group.id}/transactions`"
+            v-for="group in filteredGroups"
+            :key="group.id"
+          >
             <IonReorder slot="start"></IonReorder>
-            <IonIcon aria-hidden="true" :icon="getIcon(group.icon)" slot="start"></IonIcon>
+            <IonIcon
+              aria-hidden="true"
+              :icon="getIcon(group.icon)"
+              slot="start"
+            ></IonIcon>
             <IonLabel>
               <h2>{{ group.name }}</h2>
             </IonLabel>
@@ -60,11 +78,13 @@ import {
   IonRefresher,
   IonRefresherContent,
   RefresherCustomEvent,
-  ReorderEndCustomEvent, IonReorder,
+  ReorderEndCustomEvent,
+  IonReorder,
   IonButtons,
   IonButton,
-} from '@ionic/vue';
-import { add, person, people, search } from 'ionicons/icons';
+  IonMenuButton,
+} from "@ionic/vue";
+import { add, person, people, search } from "ionicons/icons";
 import { useGroupStore } from "@/stores/group.store";
 import { useGroupService } from "@/services/group.service";
 import { onMounted, computed } from "vue";
@@ -77,15 +97,16 @@ const iconMap: Record<string, string> = {
 
 const groupStore = useGroupStore();
 const groupService = useGroupService();
-const searchText = ref('');
+const searchText = ref("");
 const showSearch = ref(false);
 const filteredGroups = computed(() => {
-  return groupStore.groups.filter((group) => group.name.toLowerCase().includes(searchText.value.toLowerCase()));
+  return groupStore.groups.filter((group) =>
+    group.name.toLowerCase().includes(searchText.value.toLowerCase()),
+  );
 });
 
-
 const handleReorderEnd = (event: ReorderEndCustomEvent) => {
-  console.log('Dragged from index', event.detail.from, 'to', event.detail.to);
+  console.log("Dragged from index", event.detail.from, "to", event.detail.to);
   event.detail.complete();
 };
 const getIcon = (iconName: string) => iconMap[iconName] || person;
@@ -99,7 +120,5 @@ const handleRefresh = async (event: RefresherCustomEvent) => {
     event.target.complete();
   }
 };
-onMounted(() => {
-
-});
+onMounted(() => {});
 </script>

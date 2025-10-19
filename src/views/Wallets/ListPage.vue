@@ -5,22 +5,27 @@
         <IonAvatar aria-hidden="true" slot="start">
           <img src="/logo.svg" />
         </IonAvatar>
-        <IonTitle slot="start">
-          Family Accounting
-        </IonTitle>
+        <IonTitle slot="start"> Family Accounting </IonTitle>
       </IonToolbar>
-
     </IonHeader>
-      <IonContent :fullscreen="true" :scroll-y="true">
-
+    <IonContent :fullscreen="true" :scroll-y="true">
       <IonRefresher slot="fixed" @ionRefresh="handleRefresh($event)">
         <IonRefresherContent></IonRefresherContent>
       </IonRefresher>
 
       <IonList>
-        <IonItem :detail="true" button :routerLink="`/wallets/${wallet.id}`" v-for="wallet in wallets"
-          :key="wallet.id">
-          <IonIcon aria-hidden="true" :icon="wallet.icon" slot="start"></IonIcon>
+        <IonItem
+          :detail="true"
+          button
+          :routerLink="`/wallets/${wallet.id}`"
+          v-for="wallet in wallets"
+          :key="wallet.id"
+        >
+          <IonIcon
+            aria-hidden="true"
+            :icon="wallet.icon"
+            slot="start"
+          ></IonIcon>
           <IonLabel>
             <h2>{{ wallet.name }}</h2>
           </IonLabel>
@@ -52,14 +57,14 @@ import {
   IonRefresher,
   IonRefresherContent,
   RefresherCustomEvent,
-} from '@ionic/vue';
-import { person, people, business, add } from 'ionicons/icons';
-import { ref } from 'vue';
+} from "@ionic/vue";
+import { person, people, business, add } from "ionicons/icons";
+import { ref } from "vue";
 const wallets = ref([
-  { id: 1, name: 'HomeWallet', icon: person, },
-  { id: 2, name: 'CarWallet', icon: people, },
-  { id: 3, name: 'TravelWallet', icon: business, },
-  { id: 4, name: 'OtherWallet', icon: add, },
+  { id: 1, name: "HomeWallet", icon: person },
+  { id: 2, name: "CarWallet", icon: people },
+  { id: 3, name: "TravelWallet", icon: business },
+  { id: 4, name: "OtherWallet", icon: add },
 ]);
 
 const handleRefresh = (event: RefresherCustomEvent) => {
