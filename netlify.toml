@@ -65,29 +65,12 @@
     Cache-Control = "public, max-age=31536000, immutable"
     Content-Type = "image/svg+xml"
 
-# SPA redirects
+# SPA redirects - redirect all routes to index.html for client-side routing
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-  force = false
-  # Don't redirect if file exists
-  conditions = {Role = ["Not", "admin"]}
 
-# Enable asset optimization
+# Disable Netlify's post-processing (Vite already handles minification/bundling)
 [build.processing]
-  skip_processing = false
-
-[build.processing.css]
-  bundle = true
-  minify = true
-
-[build.processing.js]
-  bundle = true
-  minify = true
-
-[build.processing.html]
-  pretty_urls = true
-
-[build.processing.images]
-  compress = true
+  skip_processing = true
