@@ -8,5 +8,6 @@ export default {
     groups: "گروه ها",
     wallets: "کیف پول ها",
     accounts: "حساب ها",
+    appName: "حسابداری مشترک",
   },
 };

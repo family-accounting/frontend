@@ -8,5 +8,6 @@ export default {
     groups: "Groups",
     wallets: "Wallets",
     accounts: "Accounts",
+    appName: "Family Accounting",
   },
 };

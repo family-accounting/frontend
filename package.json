@@ -20,6 +20,8 @@
     "@capacitor/status-bar": "7.0.3",
     "@ionic/vue": "^8.0.0",
     "@ionic/vue-router": "^8.0.0",
+    "@vueuse/core": "^13.9.0",
+    "@vueuse/head": "^2.0.0",
     "axios": "^1.12.2",
     "i18next-vue": "^5.3.0",
     "ionicons": "^7.0.0",
