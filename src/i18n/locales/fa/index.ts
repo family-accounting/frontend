@@ -9,5 +9,6 @@ export default {
     wallets: "کیف پول ها",
     accounts: "حساب ها",
     appName: "حسابداری مشترک",
+    appDescription: "حسابداری مشترک سیستمی برای مدیریت مالی خانواده است.",
   },
 };

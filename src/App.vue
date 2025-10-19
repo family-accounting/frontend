@@ -12,5 +12,11 @@ import { useHead } from '@vueuse/head';
 const { t } = useTranslation();
 useHead({
   title: t('appName'),
+  meta: [
+    {
+      name: 'description',
+      content: t('appDescription'),
+    },
+  ],
 });
 </script>
