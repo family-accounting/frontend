@@ -8,15 +8,23 @@
                 <IonTitle slot="start">
                     Family Accounting
                 </IonTitle>
-
+                <IonButtons slot="end">
+                    <IonButton slot="end" fill="clear" @click="showSearch = !showSearch">
+                        <IonIcon :icon="search"></IonIcon>
+                    </IonButton>
+                    <IonButton :routerLink="`/groups`" fill="clear">
+                        <IonIcon :icon="logOut"></IonIcon>
+                    </IonButton>
+                </IonButtons>
             </IonToolbar>
         </IonHeader>
         <IonContent :fullscreen="true" :scroll-y="true">
             <IonRefresher slot="fixed" @ionRefresh="handleRefresh($event)">
                 <IonRefresherContent></IonRefresherContent>
             </IonRefresher>
+            <IonSearchbar v-if="showSearch" v-model="searchText" placeholder="Search"></IonSearchbar>
             <IonList>
-                <IonItem :detail="true" button :routerLink="`/members/${member.id}`" v-for="member in members"
+                <IonItem :detail="true" button :routerLink="`/members/${member.id}`" v-for="member in filteredMembers"
                     :key="member.id">
                     <IonIcon aria-hidden="true" :icon="member.icon" slot="start"></IonIcon>
                     <IonLabel>
@@ -50,10 +58,18 @@ import {
     IonRefresher,
     IonRefresherContent,
     RefresherCustomEvent,
+    IonButtons,
+    IonButton,
+    IonSearchbar,
 } from '@ionic/vue';
-import { person, people, business, add } from 'ionicons/icons';
-import { ref } from 'vue';
+import { person, people, business, add, logOut, search } from 'ionicons/icons';
+import { ref, computed } from 'vue';
+const showSearch = ref(false);
+const searchText = ref('');
 
+const filteredMembers = computed(() => {
+    return members.value.filter((member) => member.name.toLowerCase().includes(searchText.value.toLowerCase()));
+});
 const members = ref([
     { id: 1, name: 'Member 1', icon: person, },
     { id: 2, name: 'Member 2', icon: people, },

@@ -2,17 +2,24 @@
   <IonPage>
     <IonHeader>
       <IonToolbar>
-        <IonAvatar slot="start">
+        <IonAvatar aria-hidden="true" slot="start">
           <img src="/logo.svg" />
         </IonAvatar>
-        <IonTitle>Family Accounting</IonTitle>
+        <IonTitle slot="start">
+          Family Accounting
+        </IonTitle>
+        <IonButtons slot="end">
+          <IonButton fill="clear" @click="showSearch = !showSearch">
+            <IonIcon :icon="search"></IonIcon>
+          </IonButton>
+        </IonButtons>
       </IonToolbar>
     </IonHeader>
     <IonContent :fullscreen="true" :scroll-y="true">
       <IonRefresher slot="fixed" @ionRefresh="handleRefresh($event)">
         <IonRefresherContent></IonRefresherContent>
       </IonRefresher>
-      <IonSearchbar v-model="search" placeholder="Search"></IonSearchbar>
+      <IonSearchbar v-if="showSearch" v-model="searchText" placeholder="Search"></IonSearchbar>
       <IonList>
         <IonReorderGroup :disabled="false" @ionReorderEnd="handleReorderEnd($event)">
           <IonItem :detail="true" button :routerLink="`/group/${group.id}/transactions`" v-for="group in filteredGroups"
@@ -54,8 +61,10 @@ import {
   IonRefresherContent,
   RefresherCustomEvent,
   ReorderEndCustomEvent, IonReorder,
+  IonButtons,
+  IonButton,
 } from '@ionic/vue';
-import { add, person, people } from 'ionicons/icons';
+import { add, person, people, search } from 'ionicons/icons';
 import { useGroupStore } from "@/stores/group.store";
 import { useGroupService } from "@/services/group.service";
 import { onMounted, computed } from "vue";
@@ -68,10 +77,10 @@ const iconMap: Record<string, string> = {
 
 const groupStore = useGroupStore();
 const groupService = useGroupService();
-const search = ref('');
-
+const searchText = ref('');
+const showSearch = ref(false);
 const filteredGroups = computed(() => {
-  return groupStore.groups.filter((group) => group.name.toLowerCase().includes(search.value.toLowerCase()));
+  return groupStore.groups.filter((group) => group.name.toLowerCase().includes(searchText.value.toLowerCase()));
 });
 
 

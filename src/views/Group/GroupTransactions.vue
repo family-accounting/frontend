@@ -8,7 +8,11 @@
                 <IonTitle slot="start">
                     Family Accounting
                 </IonTitle>
-
+                <IonButtons slot="end">
+                    <IonButton :routerLink="`/groups`" slot="end" fill="clear">
+                        <IonIcon :icon="logOut"></IonIcon>
+                    </IonButton>
+                </IonButtons>
             </IonToolbar>
         </IonHeader>
         <IonContent :fullscreen="true" :scroll-y="true">
@@ -50,8 +54,10 @@ import {
     IonRefresher,
     IonRefresherContent,
     RefresherCustomEvent,
+    IonButtons,
+    IonButton,
 } from '@ionic/vue';
-import { person, people, business, add } from 'ionicons/icons';
+import { person, people, business, add, logOut } from 'ionicons/icons';
 import { ref } from 'vue';
 const transactions = ref([
     { id: 1, name: 'Transaction 1', icon: person, },

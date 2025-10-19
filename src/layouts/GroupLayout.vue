@@ -18,9 +18,9 @@
           <IonLabel>Reports</IonLabel>
         </IonTabButton>
 
-        <IonTabButton tab="settings" :href="`/group/${groupId}/settings`">
+        <IonTabButton tab="setting" :href="`/group/${groupId}/setting`">
           <IonIcon aria-hidden="true" :icon="settings" />
-          <IonLabel>Settings</IonLabel>
+          <IonLabel>Setting</IonLabel>
         </IonTabButton>
 
       </IonTabBar>

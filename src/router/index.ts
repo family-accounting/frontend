@@ -102,7 +102,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/Group/GroupReports.vue')
       },
       {
-        path: ':groupId/settings',
+        path: ':groupId/setting',
         name: 'GroupSettings',
         component: () => import('@/views/Group/GroupSettings.vue')
       }
