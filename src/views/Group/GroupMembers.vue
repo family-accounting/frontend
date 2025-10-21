@@ -10,7 +10,7 @@
           <IonButton slot="end" fill="clear" @click="showSearch = !showSearch">
             <IonIcon :icon="search"></IonIcon>
           </IonButton>
-          <IonButton :routerLink="`/groups`" fill="clear">
+          <IonButton :routerLink="{name: 'GroupsList'}" fill="clear">
             <IonIcon :icon="logOut"></IonIcon>
           </IonButton>
         </IonButtons>

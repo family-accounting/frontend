@@ -7,7 +7,7 @@
         </IonAvatar>
         <IonTitle slot="start"> Family Accounting </IonTitle>
         <IonButtons slot="end">
-          <IonButton :routerLink="`/groups`" slot="end" fill="clear">
+          <IonButton :routerLink="{name: 'GroupsList'}" fill="clear">
             <IonIcon :icon="logOut"></IonIcon>
           </IonButton>
         </IonButtons>

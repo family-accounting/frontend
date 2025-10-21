@@ -1,15 +1,16 @@
 <template>
   <IonPage>
     <IonHeader>
-      <IonToolbar>
-        <IonButtons slot="start">
+      <IonToolbar >
+        <div slot="start" class="flex">
+        <IonButtons>
           <IonMenuButton></IonMenuButton>
         </IonButtons>
-        <IonAvatar aria-hidden="true">
-          <img src="/logo.svg" />
-        </IonAvatar>
-
-        <IonTitle> Family Accounting </IonTitle>
+          <IonAvatar aria-hidden="true" >
+            <img src="/logo.svg" />
+          </IonAvatar>
+          <IonTitle > Family Accounting </IonTitle>
+        </div>
         <IonButtons slot="end">
           <IonButton fill="clear" @click="showSearch = !showSearch">
             <IonIcon :icon="search"></IonIcon>
@@ -34,7 +35,7 @@
           <IonItem
             :detail="true"
             button
-            :routerLink="`/group/${group.id}/transactions`"
+            :routerLink="{name: 'GroupTransactions', params: {groupId: group.id}}"
             v-for="group in filteredGroups"
             :key="group.id"
           >
@@ -122,3 +123,6 @@ const handleRefresh = async (event: RefresherCustomEvent) => {
 };
 onMounted(() => {});
 </script>
+<style scoped>
+
+</style>
