@@ -30,7 +30,8 @@
     "ionicons": "^7.0.0",
     "pinia": "^3.0.3",
     "vue": "^3.3.0",
-    "vue-router": "^4.2.0"
+    "vue-router": "^4.2.0",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@capacitor/cli": "7.4.3",
