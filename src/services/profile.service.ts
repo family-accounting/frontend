@@ -13,7 +13,7 @@ export const useProfileService = () => {
   };
 
   const createProfile = async (
-    profile: Pick<IProfile, "name" | "icon" | "color" | "description">,
+    profile: Pick<IProfile, "name" | "description">,
   ) => {
     const response = await api.post("/profiles", profile);
     return response.data;
@@ -21,7 +21,7 @@ export const useProfileService = () => {
 
   const updateProfile = async (
     id: IProfile["id"],
-    profile: Partial<Pick<IProfile, "name" | "icon" | "color" | "description">>,
+    profile: Partial<IProfile>,
   ) => {
     const response = await api.put(`/profiles/${id}`, profile);
     return response.data;
