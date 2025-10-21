@@ -8,7 +8,7 @@
         <IonTitle slot="start"> Family Accounting </IonTitle>
         <IonButtons slot="end">
           <IonButton :routerLink="{name: 'GroupsList'}" fill="clear">
-            <IonIcon :icon="logOut"></IonIcon>
+            <IonIcon :icon="logOutOutline"></IonIcon>
           </IonButton>
         </IonButtons>
       </IonToolbar>
@@ -64,7 +64,7 @@ import {
   IonButtons,
   IonButton,
 } from "@ionic/vue";
-import { person, people, business, add, logOut } from "ionicons/icons";
+import { person, people, business, add, logOutOutline } from "ionicons/icons";
 import { ref } from "vue";
 
 const members = ref([

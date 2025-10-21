@@ -8,10 +8,10 @@
         <IonTitle slot="start"> Family Accounting </IonTitle>
         <IonButtons slot="end">
           <IonButton slot="end" fill="clear" @click="showSearch = !showSearch">
-            <IonIcon :icon="search"></IonIcon>
+            <IonIcon :icon="searchOutline"></IonIcon>
           </IonButton>
           <IonButton :routerLink="{name: 'GroupsList'}" fill="clear">
-            <IonIcon :icon="logOut"></IonIcon>
+            <IonIcon :icon="logOutOutline"></IonIcon>
           </IonButton>
         </IonButtons>
       </IonToolbar>
@@ -73,7 +73,7 @@ import {
   IonButton,
   IonSearchbar,
 } from "@ionic/vue";
-import { person, people, business, add, logOut, search } from "ionicons/icons";
+import { person, people, business, add, logOutOutline, searchOutline } from "ionicons/icons";
 import { ref, computed } from "vue";
 const showSearch = ref(false);
 const searchText = ref("");
