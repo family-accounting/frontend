@@ -1,5 +1,5 @@
 import api from "@/config/api.config";
-import { IGroup } from "@/interfaces/group.interface";
+import { IAccount } from "@/interfaces/account.interface";
 
 export const useAccountService = () => {
   const getAccounts = async () => {

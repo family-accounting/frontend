@@ -1,35 +1,41 @@
 import api from '@/config/api.config';
-import { IGroup } from '@/interfaces/group.interface';
+import { ITransaction } from '@/interfaces/transaction.interface';
 
 export const useTransactionService = () => {
-  const getGroups = async () => {
-    const response = await api.get('/groups');
+  const getTransactions = async () => {
+    const response = await api.get('/transactions');
     return response.data;
   };
 
-  const getGroup = async (id: IGroup['id']) => {
-    const response = await api.get(`/groups/${id}`);
+  const getTransaction = async (id: ITransaction['id']) => {
+    const response = await api.get(`/transactions/${id}`);
     return response.data;
   };
 
-  const createGroup = async (
-    group: Pick<IGroup, 'name' | 'icon' | 'color' | 'description'>,
+  const createTransaction = async (
+    transaction: Pick<ITransaction, 'name' | 'icon' | 'description'>,
   ) => {
-    const response = await api.post('/groups', group);
+    const response = await api.post('/transactions', transaction);
     return response.data;
   };
 
-  const updateGroup = async (
-    id: IGroup['id'],
-    group: Partial<Pick<IGroup, 'name' | 'icon' | 'color' | 'description'>>,
+  const updateTransaction = async (
+    id: ITransaction['id'],
+    transaction: Partial<ITransaction>,
   ) => {
-    const response = await api.put(`/groups/${id}`, group);
+    const response = await api.put(`/transactions/${id}`, transaction);
     return response.data;
   };
 
-  const deleteGroup = async (id: IGroup['id']) => {
-    const response = await api.delete(`/groups/${id}`);
+  const deleteTransaction = async (id: ITransaction['id']) => {
+    const response = await api.delete(`/transactions/${id}`);
     return response.data;
   };
-  return { getGroups, getGroup, createGroup, updateGroup, deleteGroup };
+  return {
+    getTransactions,
+    getTransaction,
+    createTransaction,
+    updateTransaction,
+    deleteTransaction,
+  };
 };

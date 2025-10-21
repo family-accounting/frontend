@@ -1,35 +1,35 @@
 import api from "@/config/api.config";
-import { IGroup } from "@/interfaces/group.interface";
+import { IWallet } from "@/interfaces/wallet.interface";
 
-export const useGroupService = () => {
-  const getGroups = async () => {
-    const response = await api.get("/groups");
+export const useWalletService = () => {
+  const getWallets = async () => {
+    const response = await api.get("/wallets");
     return response.data;
   };
 
-  const getGroup = async (id: IGroup["id"]) => {
-    const response = await api.get(`/groups/${id}`);
+  const getWallet = async (id: IWallet["id"]) => {
+    const response = await api.get(`/wallets/${id}`);
     return response.data;
   };
 
-  const createGroup = async (
-    group: Pick<IGroup, "name" | "icon" | "color" | "description">,
+  const createWallet = async (
+    wallet: Pick<IWallet, "name" | "icon" | "color" | "description">,
   ) => {
-    const response = await api.post("/groups", group);
+    const response = await api.post("/wallets", wallet);
     return response.data;
   };
 
-  const updateGroup = async (
-    id: IGroup["id"],
-    group: Partial<Pick<IGroup, "name" | "icon" | "color" | "description">>,
+  const updateWallet = async (
+    id: IWallet["id"],
+    wallet: Partial<Pick<IWallet, "name" | "icon" | "color" | "description">>,
   ) => {
-    const response = await api.put(`/groups/${id}`, group);
+    const response = await api.put(`/wallets/${id}`, wallet);
     return response.data;
   };
 
-  const deleteGroup = async (id: IGroup["id"]) => {
-    const response = await api.delete(`/groups/${id}`);
+  const deleteWallet = async (id: IWallet["id"]) => {
+    const response = await api.delete(`/wallets/${id}`);
     return response.data;
   };
-  return { getGroups, getGroup, createGroup, updateGroup, deleteGroup };
+  return { getWallets, getWallet, createWallet, updateWallet, deleteWallet };
 };

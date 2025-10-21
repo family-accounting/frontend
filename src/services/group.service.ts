@@ -1,5 +1,4 @@
 import api from "@/config/api.config";
-import { IGroup } from "@/interfaces/group.interface";
 import { ITransaction } from "@/interfaces/transaction.interface";
 
 export const useTransactionService = () => {

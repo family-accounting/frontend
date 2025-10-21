@@ -13,7 +13,7 @@ export const useMemberService = () => {
   };
 
   const createMember = async (
-    member: Pick<IMember, "name" | "email" | "avatar" | "role">,
+    member: Pick<IMember, "name" | "icon" | "groupId" | "isAdmin" | "isActive" | "isDeleted" | "isBlocked" | "isVerified" | "isEmailVerified" | "isPhoneVerified">,
   ) => {
     const response = await api.post("/members", member);
     return response.data;
@@ -21,7 +21,7 @@ export const useMemberService = () => {
 
   const updateMember = async (
     id: IMember["id"],
-    member: Partial<Pick<IMember, "name" | "email" | "avatar" | "role">>,
+    member: Partial<IMember>,
   ) => {
     const response = await api.put(`/members/${id}`, member);
     return response.data;

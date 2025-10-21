@@ -1,35 +1,35 @@
 import api from '@/config/api.config';
-import { IGroup } from '@/interfaces/group.interface';
+import { IUser } from '@/interfaces/user.interface';
 
 export const useUserService = () => {
-  const getGroups = async () => {
-    const response = await api.get('/groups');
+  const getUsers = async () => {
+    const response = await api.get('/users');
     return response.data;
   };
 
-  const getGroup = async (id: IGroup['id']) => {
-    const response = await api.get(`/groups/${id}`);
+  const getUser = async (id: IUser['id']) => {
+    const response = await api.get(`/users/${id}`);
     return response.data;
   };
 
-  const createGroup = async (
-    group: Pick<IGroup, 'name' | 'icon' | 'color' | 'description'>,
+  const createUser = async (
+    user: Pick<IUser, 'username' | 'email' | 'icon' | 'color' | 'description'>,
   ) => {
-    const response = await api.post('/groups', group);
+    const response = await api.post('/users', user);
     return response.data;
   };
 
-  const updateGroup = async (
-    id: IGroup['id'],
-    group: Partial<Pick<IGroup, 'name' | 'icon' | 'color' | 'description'>>,
+  const updateUser = async (
+    id: IUser['id'],
+    user: Partial<Pick<IUser, 'username' | 'email' | 'icon' | 'color' | 'description'>>,
   ) => {
-    const response = await api.put(`/groups/${id}`, group);
+    const response = await api.put(`/users/${id}`, user);
     return response.data;
   };
 
-  const deleteGroup = async (id: IGroup['id']) => {
-    const response = await api.delete(`/groups/${id}`);
+    const deleteUser = async (id: IUser['id']) => {
+    const response = await api.delete(`/users/${id}`);
     return response.data;
   };
-  return { getGroups, getGroup, createGroup, updateGroup, deleteGroup };
+  return { getUsers, getUser, createUser, updateUser, deleteUser };
 };

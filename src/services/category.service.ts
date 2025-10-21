@@ -1,5 +1,5 @@
 import api from "@/config/api.config";
-import { IGroup } from "@/interfaces/group.interface";
+import { ICategory } from "@/interfaces/category.interface";
 
 export const useCategoryService = () => {
   const getCategories = async () => {

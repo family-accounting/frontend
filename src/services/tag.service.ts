@@ -1,35 +1,35 @@
 import api from '@/config/api.config';
-import { IGroup } from '@/interfaces/group.interface';
+import { ITag } from '@/interfaces/tag.interface';
 
 export const useTagService = () => {
-  const getGroups = async () => {
-    const response = await api.get('/groups');
+  const getTags = async () => {
+    const response = await api.get('/tags');
     return response.data;
   };
 
-  const getGroup = async (id: IGroup['id']) => {
-    const response = await api.get(`/groups/${id}`);
+      const getTag = async (id: ITag['id']) => {
+    const response = await api.get(`/tags/${id}`);
     return response.data;
   };
 
-  const createGroup = async (
-    group: Pick<IGroup, 'name' | 'icon' | 'color' | 'description'>,
+  const createTag = async (
+    tag: Pick<ITag, 'name' | 'icon' | 'color' | 'description'>,
   ) => {
-    const response = await api.post('/groups', group);
+    const response = await api.post('/tags', tag);
     return response.data;
   };
 
-  const updateGroup = async (
-    id: IGroup['id'],
-    group: Partial<Pick<IGroup, 'name' | 'icon' | 'color' | 'description'>>,
+  const updateTag = async (
+    id: ITag['id'],
+    tag: Partial<Pick<ITag, 'name' | 'icon' | 'color' | 'description'>>,
   ) => {
-    const response = await api.put(`/groups/${id}`, group);
+    const response = await api.put(`/tags/${id}`, tag);
     return response.data;
   };
 
-  const deleteGroup = async (id: IGroup['id']) => {
-    const response = await api.delete(`/groups/${id}`);
+  const deleteTag = async (id: ITag['id']) => {
+    const response = await api.delete(`/tags/${id}`);
     return response.data;
   };
-  return { getGroups, getGroup, createGroup, updateGroup, deleteGroup };
+  return { getTags, getTag, createTag, updateTag, deleteTag };
 };
