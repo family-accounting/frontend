@@ -21,13 +21,15 @@ export const useUserService = () => {
 
   const updateUser = async (
     id: IUser['id'],
-    user: Partial<Pick<IUser, 'username' | 'email' | 'icon' | 'color' | 'description'>>,
+    user: Partial<
+      Pick<IUser, 'username' | 'email' | 'icon' | 'color' | 'description'>
+    >,
   ) => {
     const response = await api.put(`/users/${id}`, user);
     return response.data;
   };
 
-    const deleteUser = async (id: IUser['id']) => {
+  const deleteUser = async (id: IUser['id']) => {
     const response = await api.delete(`/users/${id}`);
     return response.data;
   };

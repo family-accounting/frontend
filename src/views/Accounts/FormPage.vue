@@ -80,15 +80,15 @@ import {
   IonGrid,
   IonRow,
   IonCol,
-} from "@ionic/vue";
-import { person, arrowBack } from "ionicons/icons";
-import { computed, onMounted, ref } from "vue";
-import { useRoute } from "vue-router";
+} from '@ionic/vue';
+import { person, arrowBack } from 'ionicons/icons';
+import { computed, onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
 const account = ref({
-  name: "",
+  name: '',
   icon: person,
-  color: "primary",
-  description: "",
+  color: 'primary',
+  description: '',
 });
 
 const route = useRoute();

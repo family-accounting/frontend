@@ -1,6 +1,6 @@
-import { TransactionTypeEnum } from "@/enums";
-import { z } from "zod";
-import { IdSchema } from ".";
+import { TransactionTypeEnum } from '@/enums';
+import { z } from 'zod';
+import { IdSchema } from '.';
 
 export const createTransactionSchema = z.object({
   title: z.string(),

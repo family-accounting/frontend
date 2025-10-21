@@ -32,7 +32,7 @@
             <IonIcon aria-hidden="true" :icon="people" />
             <IonLabel>{{ t('groups') }}</IonLabel>
           </IonTabButton>
-          
+
           <IonTabButton tab="accounts" href="/accounts">
             <IonIcon aria-hidden="true" :icon="person" />
             <IonLabel>{{ t('accounts') }}</IonLabel>
@@ -68,11 +68,7 @@ import {
   IonItem,
   IonButton,
 } from '@ionic/vue';
-import {
-  people,
-  person,
-  statsChart,
-} from 'ionicons/icons';
+import { people, person, statsChart } from 'ionicons/icons';
 import { useTranslation } from 'i18next-vue';
 import { i18next } from '@/i18n';
 const { t } = useTranslation();

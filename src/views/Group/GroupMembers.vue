@@ -10,7 +10,7 @@
           <IonButton slot="end" fill="clear" @click="showSearch = !showSearch">
             <IonIcon :icon="searchOutline"></IonIcon>
           </IonButton>
-          <IonButton :routerLink="{name: 'GroupsList'}" fill="clear">
+          <IonButton :routerLink="{ name: 'GroupsList' }" fill="clear">
             <IonIcon :icon="logOutOutline"></IonIcon>
           </IonButton>
         </IonButtons>
@@ -72,11 +72,18 @@ import {
   IonButtons,
   IonButton,
   IonSearchbar,
-} from "@ionic/vue";
-import { person, people, business, add, logOutOutline, searchOutline } from "ionicons/icons";
-import { ref, computed } from "vue";
+} from '@ionic/vue';
+import {
+  person,
+  people,
+  business,
+  add,
+  logOutOutline,
+  searchOutline,
+} from 'ionicons/icons';
+import { ref, computed } from 'vue';
 const showSearch = ref(false);
-const searchText = ref("");
+const searchText = ref('');
 
 const filteredMembers = computed(() => {
   return members.value.filter((member) =>
@@ -84,10 +91,10 @@ const filteredMembers = computed(() => {
   );
 });
 const members = ref([
-  { id: 1, name: "Member 1", icon: person },
-  { id: 2, name: "Member 2", icon: people },
-  { id: 3, name: "Member 3", icon: business },
-  { id: 4, name: "Member 4", icon: add },
+  { id: 1, name: 'Member 1', icon: person },
+  { id: 2, name: 'Member 2', icon: people },
+  { id: 3, name: 'Member 3', icon: business },
+  { id: 4, name: 'Member 4', icon: add },
 ]);
 
 const handleRefresh = (event: RefresherCustomEvent) => {

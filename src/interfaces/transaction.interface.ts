@@ -6,7 +6,7 @@ export interface ITransaction {
   amount: number;
   date: Date;
   description: string;
-  type: "income" | "expense";
+  type: 'income' | 'expense';
   category: string;
   subCategory: string;
   tags: string[];

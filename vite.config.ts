@@ -1,9 +1,9 @@
 /// <reference types="vitest" />
 
-import legacy from "@vitejs/plugin-legacy";
-import vue from "@vitejs/plugin-vue";
-import path from "path";
-import { defineConfig } from "vite";
+import legacy from '@vitejs/plugin-legacy';
+import vue from '@vitejs/plugin-vue';
+import path from 'path';
+import { defineConfig } from 'vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -26,7 +26,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': path.resolve(__dirname, './src'),
     },
   },
   build: {
@@ -58,19 +58,46 @@ export default defineConfig({
                 if (match) {
                   const component = match[1];
                   // Group form-related components
-                  if (['input', 'textarea', 'select', 'checkbox', 'radio', 'toggle', 'range'].includes(component)) {
+                  if (
+                    [
+                      'input',
+                      'textarea',
+                      'select',
+                      'checkbox',
+                      'radio',
+                      'toggle',
+                      'range',
+                    ].includes(component)
+                  ) {
                     return 'ionic-forms';
                   }
                   // Group navigation components
-                  if (['nav', 'router', 'tabs', 'menu', 'back-button'].includes(component)) {
+                  if (
+                    ['nav', 'router', 'tabs', 'menu', 'back-button'].includes(
+                      component,
+                    )
+                  ) {
                     return 'ionic-nav';
                   }
                   // Group overlay components
-                  if (['modal', 'popover', 'toast', 'loading', 'alert', 'action-sheet'].includes(component)) {
+                  if (
+                    [
+                      'modal',
+                      'popover',
+                      'toast',
+                      'loading',
+                      'alert',
+                      'action-sheet',
+                    ].includes(component)
+                  ) {
                     return 'ionic-overlays';
                   }
                   // Group list components
-                  if (['list', 'item', 'item-sliding', 'virtual-scroll'].includes(component)) {
+                  if (
+                    ['list', 'item', 'item-sliding', 'virtual-scroll'].includes(
+                      component,
+                    )
+                  ) {
                     return 'ionic-lists';
                   }
                 }
@@ -97,7 +124,11 @@ export default defineConfig({
             if (id.includes('pinia')) {
               return 'pinia';
             }
-            if (id.includes('vue') && !id.includes('vue-router') && !id.includes('@vueuse')) {
+            if (
+              id.includes('vue') &&
+              !id.includes('vue-router') &&
+              !id.includes('@vueuse')
+            ) {
               return 'vue';
             }
 
@@ -135,17 +166,11 @@ export default defineConfig({
     reportCompressedSize: false,
   },
   optimizeDeps: {
-    include: [
-      'vue',
-      'vue-router',
-      'pinia',
-      '@ionic/vue',
-      '@ionic/vue-router',
-    ],
+    include: ['vue', 'vue-router', 'pinia', '@ionic/vue', '@ionic/vue-router'],
     exclude: ['@ionic/core'],
   },
   test: {
     globals: true,
-    environment: "jsdom",
+    environment: 'jsdom',
   },
 });

@@ -7,7 +7,7 @@ export const useTagService = () => {
     return response.data;
   };
 
-      const getTag = async (id: ITag['id']) => {
+  const getTag = async (id: ITag['id']) => {
     const response = await api.get(`/tags/${id}`);
     return response.data;
   };

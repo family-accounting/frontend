@@ -13,7 +13,6 @@
             <IonTitle> Family Accounting </IonTitle>
           </RouterLink>
         </div>
-
       </IonToolbar>
     </IonHeader>
     <IonContent :fullscreen="true" :scroll-y="true">
@@ -21,9 +20,18 @@
         <IonRefresherContent></IonRefresherContent>
       </IonRefresher>
       <IonList>
-        <IonItem :detail="true" button :routerLink="`/accounts/${account.id}`" v-for="account in accountStore.accounts"
-          :key="account.id">
-          <IonIcon aria-hidden="true" :icon="account.icon" slot="start"></IonIcon>
+        <IonItem
+          :detail="true"
+          button
+          :routerLink="`/accounts/${account.id}`"
+          v-for="account in accountStore.accounts"
+          :key="account.id"
+        >
+          <IonIcon
+            aria-hidden="true"
+            :icon="account.icon"
+            slot="start"
+          ></IonIcon>
           <IonLabel>
             <h2>{{ account.name }}</h2>
           </IonLabel>
@@ -57,10 +65,9 @@ import {
   RefresherCustomEvent,
   IonButtons,
   IonMenuButton,
-
-} from "@ionic/vue";
-import { add } from "ionicons/icons";
-import { useAccountStore } from "@/stores/account.store";
+} from '@ionic/vue';
+import { add } from 'ionicons/icons';
+import { useAccountStore } from '@/stores/account.store';
 const accountStore = useAccountStore();
 
 const handleRefresh = (event: RefresherCustomEvent) => {

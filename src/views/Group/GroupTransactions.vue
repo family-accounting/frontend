@@ -7,7 +7,7 @@
         </IonAvatar>
         <IonTitle slot="start"> Family Accounting </IonTitle>
         <IonButtons slot="end">
-          <IonButton :routerLink="{name: 'GroupsList'}" fill="clear">
+          <IonButton :routerLink="{ name: 'GroupsList' }" fill="clear">
             <IonIcon :icon="logOutOutline"></IonIcon>
           </IonButton>
         </IonButtons>
@@ -63,14 +63,14 @@ import {
   RefresherCustomEvent,
   IonButtons,
   IonButton,
-} from "@ionic/vue";
-import { person, people, business, add, logOutOutline } from "ionicons/icons";
-import { ref } from "vue";
+} from '@ionic/vue';
+import { person, people, business, add, logOutOutline } from 'ionicons/icons';
+import { ref } from 'vue';
 const transactions = ref([
-  { id: 1, name: "Transaction 1", icon: person },
-  { id: 2, name: "Transaction 2", icon: people },
-  { id: 3, name: "Transaction 3", icon: business },
-  { id: 4, name: "Transaction 4", icon: add },
+  { id: 1, name: 'Transaction 1', icon: person },
+  { id: 2, name: 'Transaction 2', icon: people },
+  { id: 3, name: 'Transaction 3', icon: business },
+  { id: 4, name: 'Transaction 4', icon: add },
 ]);
 
 const handleRefresh = (event: RefresherCustomEvent) => {

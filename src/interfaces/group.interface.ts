@@ -1,5 +1,5 @@
-import { IMember } from "./member.interface";
-import { ITransaction } from "./transaction.interface";
+import { IMember } from './member.interface';
+import { ITransaction } from './transaction.interface';
 
 export interface IGroup {
   id: string;

@@ -88,13 +88,13 @@ import {
   IonTitle,
   IonAvatar,
   IonIcon,
-} from "@ionic/vue";
-import { person, arrowBack } from "ionicons/icons";
-import { ref } from "vue";
+} from '@ionic/vue';
+import { person, arrowBack } from 'ionicons/icons';
+import { ref } from 'vue';
 const group = ref({
-  name: "",
+  name: '',
   icon: person,
-  color: "primary",
-  description: "",
+  color: 'primary',
+  description: '',
 });
 </script>

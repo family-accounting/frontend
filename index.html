@@ -16,17 +16,17 @@
 
     <!-- Preconnect to potential CDNs or APIs -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    
+
     <!-- Preload critical assets -->
     <link rel="preload" href="/logo.svg" as="image" type="image/svg+xml" />
-    
+
     <link rel="shortcut icon" type="image/png" href="/logo.svg" />
 
     <!-- add to homescreen for ios -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Loading..." />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    
+
     <!-- Performance optimization: preload module -->
     <link rel="modulepreload" href="/src/main.ts" />
   </head>
@@ -55,7 +55,9 @@
           animation: spin 1s linear infinite;
         }
         @keyframes spin {
-          to { transform: rotate(360deg); }
+          to {
+            transform: rotate(360deg);
+          }
         }
         @media (prefers-color-scheme: dark) {
           #loading-skeleton {

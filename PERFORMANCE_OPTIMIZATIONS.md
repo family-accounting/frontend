@@ -1,10 +1,12 @@
 # Performance Optimizations Applied
 
-This document outlines all the performance optimizations applied to improve the Lighthouse performance score from 49 to a much higher score.
+This document outlines all the performance optimizations applied to improve the
+Lighthouse performance score from 49 to a much higher score.
 
 ## 🎯 Target Issues Addressed
 
 ### Original Lighthouse Report Issues:
+
 - **First Contentful Paint**: 11.8s → Target: < 1.8s
 - **Largest Contentful Paint**: 25.4s → Target: < 2.5s
 - **Total Blocking Time**: 310ms → Target: < 200ms
@@ -20,6 +22,7 @@ This document outlines all the performance optimizations applied to improve the 
 ### 1. **Vite Build Configuration** (`vite.config.ts`)
 
 #### Minification & Compression
+
 ```typescript
 build: {
   minify: 'terser',
@@ -35,11 +38,13 @@ build: {
 }
 ```
 
-**Expected Impact**: 
+**Expected Impact**:
+
 - ~694 KiB JavaScript minification savings
 - Additional savings from console.log removal
 
 #### Manual Chunk Splitting
+
 ```typescript
 manualChunks: (id) => {
   // Split major libraries into separate chunks
@@ -51,12 +56,12 @@ manualChunks: (id) => {
   - 'ionic-core': Remaining Ionic core
   - 'ionic-vue': Ionic Vue wrapper
   - 'ionicons': Icon library
-  
+
   Vue Ecosystem:
   - 'vue': Vue core
   - 'vue-router': Vue Router
   - 'pinia': Pinia state management
-  
+
   Other Libraries:
   - 'i18n': Internationalization (i18next)
   - 'vueuse': VueUse utilities
@@ -66,6 +71,7 @@ manualChunks: (id) => {
 ```
 
 **Expected Impact**:
+
 - Better browser caching (vendors rarely change)
 - Parallel loading of chunks
 - Faster subsequent page loads
@@ -74,6 +80,7 @@ manualChunks: (id) => {
 - More efficient code splitting
 
 #### Modern JavaScript Target
+
 ```typescript
 build: {
   target: 'esnext',  // Modern JavaScript only
@@ -85,7 +92,8 @@ legacy({
 })
 ```
 
-**Expected Impact**: 
+**Expected Impact**:
+
 - ~39 KiB savings from avoiding legacy polyfills
 - Smaller, faster JavaScript code
 
@@ -94,23 +102,26 @@ legacy({
 ### 2. **Lazy Loading Routes** (`src/router/index.ts`)
 
 #### Before:
+
 ```typescript
-import MainPage from "../layouts/MainLayout.vue";
-import GroupLayout from "../layouts/GroupLayout.vue";
-import AuthLayout from "../layouts/AuthLayout.vue";
-import LoginPage from "../views/Auth/LoginPage.vue";
+import MainPage from '../layouts/MainLayout.vue';
+import GroupLayout from '../layouts/GroupLayout.vue';
+import AuthLayout from '../layouts/AuthLayout.vue';
+import LoginPage from '../views/Auth/LoginPage.vue';
 ```
 
 #### After:
+
 ```typescript
 // All layouts and pages are lazy-loaded
-const MainPage = () => import("../layouts/MainLayout.vue");
-const GroupLayout = () => import("../layouts/GroupLayout.vue");
-const AuthLayout = () => import("../layouts/AuthLayout.vue");
+const MainPage = () => import('../layouts/MainLayout.vue');
+const GroupLayout = () => import('../layouts/GroupLayout.vue');
+const AuthLayout = () => import('../layouts/AuthLayout.vue');
 // ... all routes use dynamic imports
 ```
 
 **Expected Impact**:
+
 - Massive reduction in initial bundle size
 - Each route only loads when needed
 - ~1,523 KiB unused JavaScript savings
@@ -121,11 +132,13 @@ const AuthLayout = () => import("../layouts/AuthLayout.vue");
 ### 3. **CSS Optimization** (`src/main.ts`)
 
 #### Removed Unused Ionic CSS Utilities:
+
 - ❌ `float-elements.css` (rarely used)
 - ❌ `text-alignment.css` (use Tailwind/custom CSS)
 - ❌ `text-transformation.css` (minimal usage)
 
-**Expected Impact**: 
+**Expected Impact**:
+
 - 10-30 KiB CSS size reduction
 - Faster stylesheet parsing
 
@@ -134,6 +147,7 @@ const AuthLayout = () => import("../layouts/AuthLayout.vue");
 ### 4. **HTML Optimizations** (`index.html`)
 
 #### Added Resource Hints:
+
 ```html
 <!-- DNS prefetching for external resources -->
 <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
@@ -146,12 +160,14 @@ const AuthLayout = () => import("../layouts/AuthLayout.vue");
 ```
 
 #### Added Loading Skeleton:
+
 - Inline CSS loading spinner
 - Improves perceived performance
 - No flash of white screen
 - Works in dark mode
 
 **Expected Impact**:
+
 - Better First Contentful Paint perception
 - Reduced Cumulative Layout Shift
 - Better user experience during load
@@ -169,6 +185,7 @@ not IE 11
 ```
 
 **Expected Impact**:
+
 - Smaller polyfill bundles
 - Modern JavaScript features
 - Better performance in target browsers
@@ -186,19 +203,20 @@ not IE 11
 
 ## 📊 Expected Performance Improvements
 
-| Metric | Before | Target | Improvement |
-|--------|--------|--------|-------------|
-| Performance Score | 49 | 85+ | +36 points |
-| First Contentful Paint | 11.8s | <1.8s | ~10s faster |
-| Largest Contentful Paint | 25.4s | <2.5s | ~23s faster |
-| Total Bundle Size | 4,301 KiB | ~2,000 KiB | ~50% smaller |
-| Total Blocking Time | 310ms | <200ms | -110ms |
+| Metric                   | Before    | Target     | Improvement  |
+| ------------------------ | --------- | ---------- | ------------ |
+| Performance Score        | 49        | 85+        | +36 points   |
+| First Contentful Paint   | 11.8s     | <1.8s      | ~10s faster  |
+| Largest Contentful Paint | 25.4s     | <2.5s      | ~23s faster  |
+| Total Bundle Size        | 4,301 KiB | ~2,000 KiB | ~50% smaller |
+| Total Blocking Time      | 310ms     | <200ms     | -110ms       |
 
 ---
 
 ## 🚀 How to Build & Test
 
 ### Build for Production:
+
 ```bash
 npm run build
 # or
@@ -206,6 +224,7 @@ bun run build
 ```
 
 ### Preview Production Build:
+
 ```bash
 npm run preview
 # or
@@ -213,6 +232,7 @@ bun run preview
 ```
 
 ### Test with Lighthouse:
+
 1. Build the production version
 2. Run preview server
 3. Open Chrome DevTools
@@ -238,7 +258,8 @@ bun run preview
 
 3. **Font Optimization**
    - Use `font-display: swap` for custom fonts
-   - Subset fonts to include only needed characters (especially for Persian fonts)
+   - Subset fonts to include only needed characters (especially for Persian
+     fonts)
 
 4. **Service Worker**
    - Consider adding a service worker for offline support
@@ -271,11 +292,13 @@ bun run preview
 ## 🔍 Monitoring Performance
 
 ### Recommended Tools:
+
 - **Lighthouse CI**: Automate performance testing
 - **Web Vitals**: Monitor real user metrics
 - **Bundle Analyzer**: Visualize bundle composition
 
 ### Add to package.json:
+
 ```json
 {
   "scripts": {
@@ -311,7 +334,8 @@ plugins: [
 
 ## ✨ Summary
 
-These optimizations target all the major issues identified in your Lighthouse report:
+These optimizations target all the major issues identified in your Lighthouse
+report:
 
 1. ✅ **Minified JavaScript** - Terser with aggressive settings
 2. ✅ **Reduced unused JavaScript** - Complete lazy loading implementation
@@ -323,6 +347,7 @@ These optimizations target all the major issues identified in your Lighthouse re
 **Expected Final Score**: 85-95 (Performance)
 
 The actual improvement will depend on:
+
 - Network conditions
 - Server response times
 - API performance
@@ -330,8 +355,8 @@ The actual improvement will depend on:
 - Device capabilities
 
 **Next Steps**:
+
 1. Build and test the production bundle
 2. Run Lighthouse again to verify improvements
 3. Implement additional recommendations as needed
 4. Monitor real-user performance metrics
-
