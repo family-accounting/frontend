@@ -1,35 +1,35 @@
 import api from "@/config/api.config";
-import { ITransaction } from "@/interfaces/transaction.interface";
+import { IGroup } from "@/interfaces/group.interface";
 
-export const useTransactionService = () => {
-  const getTransactions = async () => {
-    const response = await api.get("/transactions");
+export const useGroupService = () => {
+  const getGroups = async () => {
+    const response = await api.get("/groups");
     return response.data;
   };
 
-  const getTransaction = async (id: ITransaction["id"]) => {
-    const response = await api.get(`/transactions/${id}`);
+  const getGroup = async (id: IGroup["id"]) => {
+    const response = await api.get(`/groups/${id}`);
     return response.data;
   };
 
-  const createTransaction = async (
-    transaction: Pick<ITransaction, "amount" | "date" | "description" | "categoryId" | "accountId" | "walletId" | "tags" | "notes">,
+  const createGroup = async (
+    group: Pick<IGroup, "name" | "icon" | "color" | "description">,
   ) => {
-    const response = await api.post("/transactions", transaction);
+    const response = await api.post("/groups", group);
     return response.data;
   };
 
-  const updateTransaction = async (
-    id: ITransaction["id"],
-    transaction: Partial<Pick<ITransaction, "amount" | "date" | "description" | "category" | "account" | "wallet" | "tags" | "notes">>,
+  const updateGroup = async (
+      id: IGroup["id"],
+    group: Partial<Pick<IGroup, "name" | "icon" | "color" | "description">>,
   ) => {
-    const response = await api.put(`/transactions/${id}`, transaction);
+    const response = await api.put(`/groups/${id}`, group);
     return response.data;
   };
 
-  const deleteTransaction = async (id: ITransaction["id"]) => {
-    const response = await api.delete(`/transactions/${id}`);
+  const deleteGroup = async (id: IGroup["id"]) => {
+    const response = await api.delete(`/groups/${id}`);
     return response.data;
   };
-  return { getTransactions, getTransaction, createTransaction, updateTransaction, deleteTransaction };
+  return { getGroups, getGroup, createGroup, updateGroup, deleteGroup };
 };

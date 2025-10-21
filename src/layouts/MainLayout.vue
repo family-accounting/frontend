@@ -32,20 +32,10 @@
             <IonIcon aria-hidden="true" :icon="people" />
             <IonLabel>{{ t('groups') }}</IonLabel>
           </IonTabButton>
-
-          <IonTabButton tab="wallets" href="/wallets">
-            <IonIcon aria-hidden="true" :icon="wallet" />
-            <IonLabel>{{ t('wallets') }}</IonLabel>
-          </IonTabButton>
-
+          
           <IonTabButton tab="accounts" href="/accounts">
             <IonIcon aria-hidden="true" :icon="person" />
             <IonLabel>{{ t('accounts') }}</IonLabel>
-          </IonTabButton>
-
-          <IonTabButton tab="transactions" href="/transactions">
-            <IonIcon aria-hidden="true" :icon="swapHorizontal" />
-            <IonLabel>{{ t('transactions') }}</IonLabel>
           </IonTabButton>
 
           <IonTabButton tab="reports" href="/reports">
@@ -80,9 +70,7 @@ import {
 } from '@ionic/vue';
 import {
   people,
-  wallet,
   person,
-  swapHorizontal,
   statsChart,
 } from 'ionicons/icons';
 import { useTranslation } from 'i18next-vue';

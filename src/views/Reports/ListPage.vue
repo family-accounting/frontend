@@ -2,10 +2,17 @@
   <IonPage>
     <IonHeader>
       <IonToolbar>
-        <IonAvatar aria-hidden="true" slot="start">
-          <img src="/logo.svg" />
-        </IonAvatar>
-        <IonTitle slot="start"> Family Accounting </IonTitle>
+        <div slot="start" class="flex">
+          <IonButtons>
+            <IonMenuButton></IonMenuButton>
+          </IonButtons>
+          <RouterLink to="/" class="flex items-center">
+            <IonAvatar aria-hidden="true">
+              <img src="/logo.svg" />
+            </IonAvatar>
+            <IonTitle> Family Accounting </IonTitle>
+          </RouterLink>
+        </div>
       </IonToolbar>
     </IonHeader>
     <IonContent :fullscreen="true" :scroll-y="true">
@@ -14,18 +21,8 @@
       </IonRefresher>
 
       <IonList>
-        <IonItem
-          :detail="true"
-          button
-          :routerLink="`/reports/${report.id}`"
-          v-for="report in reports"
-          :key="report.id"
-        >
-          <IonIcon
-            aria-hidden="true"
-            :icon="report.icon"
-            slot="start"
-          ></IonIcon>
+        <IonItem :detail="true" button :routerLink="`/reports/${report.id}`" v-for="report in reports" :key="report.id">
+          <IonIcon aria-hidden="true" :icon="report.icon" slot="start"></IonIcon>
           <IonLabel>
             <h2>{{ report.name }}</h2>
           </IonLabel>
@@ -57,9 +54,12 @@ import {
   IonRefresher,
   IonRefresherContent,
   RefresherCustomEvent,
+  IonButtons,
+  IonMenuButton,
 } from "@ionic/vue";
 import { person, people, business, add } from "ionicons/icons";
 import { ref } from "vue";
+import { RouterLink } from "vue-router";
 const reports = ref([
   { id: 1, name: "HomeReport", icon: person },
   { id: 2, name: "CarReport", icon: people },
