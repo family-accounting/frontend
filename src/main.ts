@@ -39,14 +39,16 @@ import "./theme/variables.css";
 // i18n
 import { i18next } from "./i18n";
 import I18NextVue from "i18next-vue";
-
+import { createHead } from '@vueuse/head';
 const pinia = createPinia();
+const head = createHead();
 
 const app = createApp(App)
   .use(IonicVue)
   .use(pinia)
   .use(router)
-  .use(I18NextVue, { i18next });
+  .use(I18NextVue, { i18next })
+  .use(head);
 
 router.isReady().then(() => {
   app.mount("#app");
