@@ -18,38 +18,27 @@
             <IonIcon :icon="search"></IonIcon>
           </IonButton>
         </IonButtons>
+        <IonButton @click="isEditingOrder = !isEditingOrder">
+          <IonIcon :icon="pencil"></IonIcon>
+        </IonButton>
       </IonToolbar>
     </IonHeader>
     <IonContent :fullscreen="true" :scroll-y="true">
       <IonRefresher slot="fixed" @ionRefresh="handleRefresh($event)">
         <IonRefresherContent></IonRefresherContent>
       </IonRefresher>
-      <IonSearchbar
-        v-if="showSearch"
-        v-model="searchText"
-        placeholder="Search"
-      ></IonSearchbar>
+      <IonSearchbar v-if="showSearch" v-model="searchText" placeholder="Search"></IonSearchbar>
+      <!-- edit order list -->
+
+
       <IonList>
-        <IonReorderGroup
-          :disabled="false"
-          @ionReorderEnd="handleReorderEnd($event)"
-        >
-          <IonItem
-            :detail="true"
-            button
-            :routerLink="{
-              name: 'GroupTransactions',
-              params: { groupId: group.id },
-            }"
-            v-for="group in filteredGroups"
-            :key="group.id"
-          >
+        <IonReorderGroup :disabled="isEditingOrder" @ionReorderEnd="handleReorderEnd($event)">
+          <IonItem :detail="true" button :routerLink="{
+            name: 'GroupTransactions',
+            params: { groupId: group.id },
+          }" v-for="group in filteredGroups" :key="group.id">
             <IonReorder slot="start"></IonReorder>
-            <IonIcon
-              aria-hidden="true"
-              :icon="getIcon(group.icon)"
-              slot="start"
-            ></IonIcon>
+            <IonIcon aria-hidden="true" :icon="getIcon(group.icon)" slot="start"></IonIcon>
             <IonLabel slot="start">
               <h2>{{ group.name }}</h2>
               <p>{{ group.description }}</p>
@@ -101,6 +90,7 @@ import {
   airplane,
   heart,
   fastFood,
+  pencil,
 } from 'ionicons/icons';
 import { useGroupStore } from '@/stores/group.store';
 import { useGroupService } from '@/services/group.service';
@@ -143,6 +133,11 @@ const handleRefresh = async (event: RefresherCustomEvent) => {
     event.target.complete();
   }
 };
-onMounted(() => {});
+
+const isEditingOrder = ref(false);
+
+
+
+onMounted(() => { });
 </script>
 <style scoped></style>
