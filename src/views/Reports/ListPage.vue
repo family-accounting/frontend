@@ -2,47 +2,25 @@
   <IonPage>
     <IonHeader>
       <IonToolbar>
-        <div slot="start" class="flex">
-          <IonButtons>
-            <IonMenuButton></IonMenuButton>
-          </IonButtons>
-          <RouterLink to="/" class="flex items-center">
-            <IonAvatar aria-hidden="true">
-              <img src="/logo.svg" />
-            </IonAvatar>
-            <IonTitle> Family Accounting </IonTitle>
-          </RouterLink>
-        </div>
+        <IonAvatar aria-hidden="true" slot="start">
+          <img src="/logo.svg" />
+        </IonAvatar>
+        <IonTitle slot="start"> Family Accounting </IonTitle>
+        <IonButtons slot="end">
+          <IonButton :routerLink="{ name: 'GroupsList' }" fill="clear">
+            <IonIcon :icon="logOutOutline"></IonIcon>
+          </IonButton>
+        </IonButtons>
       </IonToolbar>
     </IonHeader>
     <IonContent :fullscreen="true" :scroll-y="true">
       <IonRefresher slot="fixed" @ionRefresh="handleRefresh($event)">
         <IonRefresherContent></IonRefresherContent>
       </IonRefresher>
-
-      <IonList>
-        <IonItem
-          :detail="true"
-          button
-          :routerLink="`/reports/${report.id}`"
-          v-for="report in reports"
-          :key="report.id"
-        >
-          <IonIcon
-            aria-hidden="true"
-            :icon="report.icon"
-            slot="start"
-          ></IonIcon>
-          <IonLabel>
-            <h2>{{ report.name }}</h2>
-          </IonLabel>
-        </IonItem>
-      </IonList>
-      <IonFab vertical="bottom" horizontal="start" slot="fixed">
-        <IonFabButton routerLink="/reports/new">
-          <IonIcon :icon="add"></IonIcon>
-        </IonFabButton>
-      </IonFab>
+      <IonCard>
+        <IonCardHeader>sdff</IonCardHeader>
+        <IonCardContent>sdff</IonCardContent>
+      </IonCard>
     </IonContent>
   </IonPage>
 </template>
@@ -55,32 +33,34 @@ import {
   IonTitle,
   IonAvatar,
   IonContent,
-  IonList,
-  IonItem,
-  IonLabel,
   IonIcon,
-  IonFab,
-  IonFabButton,
   IonRefresher,
   IonRefresherContent,
   RefresherCustomEvent,
   IonButtons,
-  IonMenuButton,
+  IonButton,
+  IonCard,
+  IonCardHeader,
+  IonCardContent,
 } from '@ionic/vue';
-import { person, people, business, add } from 'ionicons/icons';
-import { ref } from 'vue';
-import { RouterLink } from 'vue-router';
-const reports = ref([
-  { id: 1, name: 'HomeReport', icon: person },
-  { id: 2, name: 'CarReport', icon: people },
-  { id: 3, name: 'TravelReport', icon: business },
-  { id: 4, name: 'OtherReport', icon: add },
-]);
+import { logOutOutline } from 'ionicons/icons';
+import { onIonViewWillEnter } from '@ionic/vue';
+
+
+const loadData = () => {
+  // Load reports data here
+  console.log('Loading reports data...');
+};
 
 const handleRefresh = (event: RefresherCustomEvent) => {
   setTimeout(() => {
-    // Any calls to load data go here
+    loadData();
     event.target.complete();
   }, 2000);
 };
+
+// Called every time the view is entered (including first mount)
+onIonViewWillEnter(() => {
+  loadData();
+});
 </script>
