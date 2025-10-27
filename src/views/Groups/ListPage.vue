@@ -18,9 +18,7 @@
             <IonIcon :icon="search"></IonIcon>
           </IonButton>
         </IonButtons>
-        <IonButton @click="isEditingOrder = !isEditingOrder">
-          <IonIcon :icon="pencil"></IonIcon>
-        </IonButton>
+
       </IonToolbar>
     </IonHeader>
     <IonContent :fullscreen="true" :scroll-y="true">
@@ -32,19 +30,16 @@
 
 
       <IonList>
-        <IonReorderGroup :disabled="isEditingOrder" @ionReorderEnd="handleReorderEnd($event)">
-          <IonItem :detail="true" button :routerLink="{
-            name: 'GroupTransactions',
-            params: { groupId: group.id },
-          }" v-for="group in filteredGroups" :key="group.id">
-            <IonReorder slot="start"></IonReorder>
-            <IonIcon aria-hidden="true" :icon="getIcon(group.icon)" slot="start"></IonIcon>
-            <IonLabel slot="start">
-              <h2>{{ group.name }}</h2>
-              <p>{{ group.description }}</p>
-            </IonLabel>
-          </IonItem>
-        </IonReorderGroup>
+        <IonItem :detail="true" button :routerLink="{
+          name: 'GroupTransactions',
+          params: { groupId: group.id },
+        }" v-for="group in filteredGroups" :key="group.id">
+          <IonIcon aria-hidden="true" :icon="getIcon(group.icon)" slot="start"></IonIcon>
+          <IonLabel slot="start">
+            <h2>{{ group.name }}</h2>
+            <p>{{ group.description }}</p>
+          </IonLabel>
+        </IonItem>
       </IonList>
       <IonFab vertical="bottom" horizontal="start" slot="fixed">
         <IonFabButton routerLink="/groups/new">
@@ -70,12 +65,9 @@ import {
   IonFab,
   IonFabButton,
   IonSearchbar,
-  IonReorderGroup,
   IonRefresher,
   IonRefresherContent,
   RefresherCustomEvent,
-  ReorderEndCustomEvent,
-  IonReorder,
   IonButtons,
   IonButton,
   IonMenuButton,
@@ -118,10 +110,7 @@ const filteredGroups = computed(() => {
   );
 });
 
-const handleReorderEnd = (event: ReorderEndCustomEvent) => {
-  console.log('Dragged from index', event.detail.from, 'to', event.detail.to);
-  event.detail.complete();
-};
+
 const getIcon = (iconName: string) => iconMap[iconName];
 const handleRefresh = async (event: RefresherCustomEvent) => {
   try {
@@ -134,7 +123,6 @@ const handleRefresh = async (event: RefresherCustomEvent) => {
   }
 };
 
-const isEditingOrder = ref(false);
 
 
 
