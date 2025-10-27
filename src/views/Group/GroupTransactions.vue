@@ -18,9 +18,7 @@
             <IonIcon :icon="search"></IonIcon>
           </IonButton>
         </IonButtons>
-        <IonButton @click="isEditingOrder = !isEditingOrder">
-          <IonIcon :icon="pencil"></IonIcon>
-        </IonButton>
+
       </IonToolbar>
     </IonHeader>
     <IonContent :fullscreen="true" :scroll-y="true">
@@ -28,26 +26,20 @@
         <IonRefresherContent></IonRefresherContent>
       </IonRefresher>
       <IonSearchbar v-if="showSearch" v-model="searchText" placeholder="Search"></IonSearchbar>
-      <!-- edit order list -->
-
-
       <IonList>
-        <IonReorderGroup :disabled="isEditingOrder" @ionReorderEnd="handleReorderEnd($event)">
-          <IonItem :detail="true" button :routerLink="{
-            name: 'GroupTransactions',
-            params: { groupId: group.id },
-          }" v-for="group in filteredTransactions" :key="group.id">
-            <IonReorder slot="start"></IonReorder>
-            <IonIcon aria-hidden="true" :icon="getIcon(group.icon)" slot="start"></IonIcon>
-            <IonLabel slot="start">
-              <h2>{{ group.name }}</h2>
-              <p>{{ group.description }}</p>
-            </IonLabel>
-          </IonItem>
-        </IonReorderGroup>
+        <IonItem :detail="true" button :routerLink="{
+          name: 'TransactionDetails',
+          params: { transactionId: transaction.id },
+        }" v-for="transaction in filteredTransactions" :key="transaction.id">
+          <IonIcon aria-hidden="true" :icon="getIcon(transaction.icon)" slot="start"></IonIcon>
+          <IonLabel slot="start">
+            <h2>{{ transaction.name }}</h2>
+            <p>{{ transaction.description }}</p>
+          </IonLabel>
+        </IonItem>
       </IonList>
       <IonFab vertical="bottom" horizontal="start" slot="fixed">
-        <IonFabButton routerLink="/groups/new">
+        <IonFabButton routerLink="/group/transactions/new">
           <IonIcon :icon="add"></IonIcon>
         </IonFabButton>
       </IonFab>
@@ -70,12 +62,9 @@ import {
   IonFab,
   IonFabButton,
   IonSearchbar,
-  IonReorderGroup,
   IonRefresher,
   IonRefresherContent,
   RefresherCustomEvent,
-  ReorderEndCustomEvent,
-  IonReorder,
   IonButtons,
   IonButton,
   IonMenuButton,
@@ -90,12 +79,11 @@ import {
   airplane,
   heart,
   fastFood,
-  pencil,
 } from 'ionicons/icons';
-import { useTransactionStore } from '@/stores/transaction.store';
-import { computed } from 'vue';
+import { onMounted, computed } from 'vue';
 import { ref } from 'vue';
-import { onIonViewWillEnter } from '@ionic/vue';
+import { useTransactionService } from '@/services/tansaction.service';
+import { useTransactionStore } from '@/stores/transaction.store';
 
 const iconMap: Record<string, string> = {
   person,
@@ -108,6 +96,7 @@ const iconMap: Record<string, string> = {
   fastFood,
 };
 
+const transactionService = useTransactionService();
 const transactionStore = useTransactionStore();
 const searchText = ref('');
 const showSearch = ref(false);
@@ -117,20 +106,12 @@ const filteredTransactions = computed(() => {
   );
 });
 
-const handleReorderEnd = (event: ReorderEndCustomEvent) => {
-  console.log('Dragged from index', event.detail.from, 'to', event.detail.to);
-  event.detail.complete();
-};
+
 const getIcon = (iconName: string) => iconMap[iconName];
-
-const loadData = async () => {
-  // Load transactions data here
-  console.log('Loading transactions data...');
-};
-
 const handleRefresh = async (event: RefresherCustomEvent) => {
   try {
-    await loadData();
+    const transactions = await transactionService.getTransactions();
+    transactionStore.transactions = transactions;
     event.target.complete();
   } catch (error) {
     console.error(error);
@@ -138,11 +119,9 @@ const handleRefresh = async (event: RefresherCustomEvent) => {
   }
 };
 
-const isEditingOrder = ref(false);
 
-// Called every time the view is entered (including first mount)
-onIonViewWillEnter(() => {
-  loadData();
-});
+
+
+onMounted(() => { });
 </script>
 <style scoped></style>
