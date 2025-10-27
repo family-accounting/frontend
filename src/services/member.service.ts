@@ -1,18 +1,20 @@
 import api from '@/config/api.config';
 import { IMember } from '@/interfaces/member.interface';
+import { IGroup } from '@/interfaces/group.interface';
 
 export const useMemberService = () => {
-  const getMembers = async () => {
-    const response = await api.get('/members');
+  const getMembers = async (groupId: IGroup['id']) => {
+    const response = await api.get(`/members?groupId=${groupId}`);
     return response.data;
   };
 
-  const getMember = async (id: IMember['id']) => {
-    const response = await api.get(`/members/${id}`);
+  const getMember = async (groupId: IGroup['id'], id: IMember['id']) => {
+    const response = await api.get(`/members?groupId=${groupId}&id=${id}`);
     return response.data;
   };
 
   const createMember = async (
+    groupId: IGroup['id'],
     member: Pick<
       IMember,
       | 'name'
@@ -27,7 +29,10 @@ export const useMemberService = () => {
       | 'isPhoneVerified'
     >,
   ) => {
-    const response = await api.post('/members', member);
+    const response = await api.post(`/members`, {
+      ...member,
+      groupId,
+    });
     return response.data;
   };
 
