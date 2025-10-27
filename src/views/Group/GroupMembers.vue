@@ -61,30 +61,22 @@ import {
   IonSearchbar,
 } from '@ionic/vue';
 import {
-  person,
-  people,
-  business,
   add,
   logOutOutline,
   searchOutline,
 } from 'ionicons/icons';
 import { ref, computed } from 'vue';
 import { onIonViewWillEnter } from '@ionic/vue';
+import { useMemberStore } from '@/stores/member.store';
 
 const showSearch = ref(false);
 const searchText = ref('');
-
+const memberStore = useMemberStore();
 const filteredMembers = computed(() => {
-  return members.value.filter((member) =>
+  return memberStore.members.filter((member) =>
     member.name.toLowerCase().includes(searchText.value.toLowerCase()),
   );
 });
-const members = ref([
-  { id: 1, name: 'Member 1', icon: person },
-  { id: 2, name: 'Member 2', icon: people },
-  { id: 3, name: 'Member 3', icon: business },
-  { id: 4, name: 'Member 4', icon: add },
-]);
 
 const loadData = () => {
   // Load members data here
