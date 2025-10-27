@@ -17,19 +17,10 @@
       <IonRefresher slot="fixed" @ionRefresh="handleRefresh($event)">
         <IonRefresherContent></IonRefresherContent>
       </IonRefresher>
-      <IonList>
-        <IonItem :detail="true" button :routerLink="`/members/${member.id}`" v-for="member in members" :key="member.id">
-          <IonIcon aria-hidden="true" :icon="member.icon" slot="start"></IonIcon>
-          <IonLabel>
-            <h2>{{ member.name }}</h2>
-          </IonLabel>
-        </IonItem>
-      </IonList>
-      <IonFab vertical="bottom" horizontal="start" slot="fixed">
-        <IonFabButton routerLink="/members/new">
-          <IonIcon :icon="add"></IonIcon>
-        </IonFabButton>
-      </IonFab>
+      <IonCard>
+        <IonCardHeader>sdff</IonCardHeader>
+        <IonCardContent>sdff</IonCardContent>
+      </IonCard>
     </IonContent>
   </IonPage>
 </template>
@@ -42,28 +33,19 @@ import {
   IonTitle,
   IonAvatar,
   IonContent,
-  IonList,
-  IonItem,
-  IonLabel,
   IonIcon,
-  IonFab,
-  IonFabButton,
   IonRefresher,
   IonRefresherContent,
   RefresherCustomEvent,
   IonButtons,
   IonButton,
+  IonCard,
+  IonCardHeader,
+  IonCardContent,
 } from '@ionic/vue';
-import { person, people, business, add, logOutOutline } from 'ionicons/icons';
-import { ref } from 'vue';
+import { logOutOutline } from 'ionicons/icons';
 import { onIonViewWillEnter } from '@ionic/vue';
 
-const members = ref([
-  { id: 1, name: 'Member 1', icon: person },
-  { id: 2, name: 'Member 2', icon: people },
-  { id: 3, name: 'Member 3', icon: business },
-  { id: 4, name: 'Member 4', icon: add },
-]);
 
 const loadData = () => {
   // Load reports data here
