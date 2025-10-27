@@ -19,19 +19,11 @@
       <IonRefresher slot="fixed" @ionRefresh="handleRefresh($event)">
         <IonRefresherContent></IonRefresherContent>
       </IonRefresher>
+
       <IonList>
-        <IonItem
-          :detail="true"
-          button
-          :routerLink="`/accounts/${account.id}`"
-          v-for="account in accountStore.accounts"
-          :key="account.id"
-        >
-          <IonIcon
-            aria-hidden="true"
-            :icon="account.icon"
-            slot="start"
-          ></IonIcon>
+        <IonItem :detail="true" button :routerLink="`/accounts/${account.id}`" v-for="account in accountStore.accounts"
+          :key="account.id">
+          <IonIcon aria-hidden="true" :icon="getIcon(account.icon)" slot="start"></IonIcon>
           <IonLabel>
             <h2>{{ account.name }}</h2>
           </IonLabel>
@@ -66,14 +58,23 @@ import {
   IonButtons,
   IonMenuButton,
 } from '@ionic/vue';
-import { add } from 'ionicons/icons';
-import { useAccountStore } from '@/stores/account.store';
-const accountStore = useAccountStore();
+import { fastFood,wallet,cash,add } from 'ionicons/icons';
+import { RouterLink } from 'vue-router';
+import { useAccountStore } from "@/stores/account.store";
 
+const accountStore = useAccountStore();
 const handleRefresh = (event: RefresherCustomEvent) => {
   setTimeout(() => {
     // Any calls to load data go here
     event.target.complete();
   }, 2000);
 };
+
+const iconMap: Record<string, string> = {
+  fastFood,
+  wallet,
+  cash,
+};
+
+const getIcon = (iconName: string) => iconMap[iconName];
 </script>

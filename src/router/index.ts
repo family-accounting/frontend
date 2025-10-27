@@ -36,7 +36,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/Accounts/FormPage.vue'),
       },
       {
-        path: 'accounts/:id',
+        path: 'accounts/:accountId',
         name: 'AccountsEdit',
         component: () => import('@/views/Accounts/FormPage.vue'),
       },
@@ -49,9 +49,22 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/group',
-    name: 'TheGroup',
     component: () => import('@/layouts/GroupLayout.vue'),
     children: [
+      {
+        path: '',
+        name: 'TheGroup',
+        redirect: () => {
+          // This will never match since we need a groupId
+          return '/groups';
+        },
+      },
+      {
+        path: ':groupId',
+        redirect: (to) => {
+          return `/group/${to.params.groupId}/transactions`;
+        },
+      },
       {
         path: ':groupId/transactions',
         name: 'GroupTransactions',

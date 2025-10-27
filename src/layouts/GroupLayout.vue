@@ -1,12 +1,9 @@
 <template>
   <IonPage>
     <IonTabs>
-      <IonRouterOutlet :key="$route.fullPath"></IonRouterOutlet>
+      <IonRouterOutlet></IonRouterOutlet>
       <IonTabBar slot="bottom">
-        <IonTabButton
-          tab="transactions"
-          :href="`/group/${groupId}/transactions`"
-        >
+        <IonTabButton tab="transactions" :href="`/group/${groupId}/transactions`">
           <IonIcon aria-hidden="true" :icon="swapHorizontal" />
           <IonLabel>{{ t('transactions') }}</IonLabel>
         </IonTabButton>

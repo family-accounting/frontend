@@ -18,18 +18,8 @@
         <IonRefresherContent></IonRefresherContent>
       </IonRefresher>
       <IonList>
-        <IonItem
-          :detail="true"
-          button
-          :routerLink="`/members/${member.id}`"
-          v-for="member in members"
-          :key="member.id"
-        >
-          <IonIcon
-            aria-hidden="true"
-            :icon="member.icon"
-            slot="start"
-          ></IonIcon>
+        <IonItem :detail="true" button :routerLink="`/members/${member.id}`" v-for="member in members" :key="member.id">
+          <IonIcon aria-hidden="true" :icon="member.icon" slot="start"></IonIcon>
           <IonLabel>
             <h2>{{ member.name }}</h2>
           </IonLabel>
@@ -66,6 +56,7 @@ import {
 } from '@ionic/vue';
 import { person, people, business, add, logOutOutline } from 'ionicons/icons';
 import { ref } from 'vue';
+import { onIonViewWillEnter } from '@ionic/vue';
 
 const members = ref([
   { id: 1, name: 'Member 1', icon: person },
@@ -74,10 +65,20 @@ const members = ref([
   { id: 4, name: 'Member 4', icon: add },
 ]);
 
+const loadData = () => {
+  // Load settings data here
+  console.log('Loading settings data...');
+};
+
 const handleRefresh = (event: RefresherCustomEvent) => {
   setTimeout(() => {
-    // Any calls to load data go here
+    loadData();
     event.target.complete();
   }, 2000);
 };
+
+// Called every time the view is entered (including first mount)
+onIonViewWillEnter(() => {
+  loadData();
+});
 </script>

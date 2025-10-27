@@ -1,7 +1,7 @@
 <template>
   <IonPage>
     <IonContent>
-      <IonRouterOutlet :key="$route.fullPath"></IonRouterOutlet>
+      <IonRouterOutlet></IonRouterOutlet>
     </IonContent>
   </IonPage>
 </template>

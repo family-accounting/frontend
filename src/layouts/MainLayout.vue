@@ -25,7 +25,7 @@
     </IonMenu>
     <IonPage id="main-content">
       <IonTabs>
-        <IonRouterOutlet :key="$route.fullPath"></IonRouterOutlet>
+        <IonRouterOutlet></IonRouterOutlet>
 
         <IonTabBar slot="bottom">
           <IonTabButton tab="groups" href="/groups">

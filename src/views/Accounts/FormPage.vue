@@ -80,6 +80,7 @@ import {
   IonGrid,
   IonRow,
   IonCol,
+  IonIcon,
 } from '@ionic/vue';
 import { person, arrowBack } from 'ionicons/icons';
 import { computed, onMounted, ref } from 'vue';

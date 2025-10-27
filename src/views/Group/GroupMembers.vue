@@ -20,24 +20,11 @@
       <IonRefresher slot="fixed" @ionRefresh="handleRefresh($event)">
         <IonRefresherContent></IonRefresherContent>
       </IonRefresher>
-      <IonSearchbar
-        v-if="showSearch"
-        v-model="searchText"
-        placeholder="Search"
-      ></IonSearchbar>
+      <IonSearchbar v-if="showSearch" v-model="searchText" placeholder="Search"></IonSearchbar>
       <IonList>
-        <IonItem
-          :detail="true"
-          button
-          :routerLink="`/members/${member.id}`"
-          v-for="member in filteredMembers"
-          :key="member.id"
-        >
-          <IonIcon
-            aria-hidden="true"
-            :icon="member.icon"
-            slot="start"
-          ></IonIcon>
+        <IonItem :detail="true" button :routerLink="`/members/${member.id}`" v-for="member in filteredMembers"
+          :key="member.id">
+          <IonIcon aria-hidden="true" :icon="member.icon" slot="start"></IonIcon>
           <IonLabel>
             <h2>{{ member.name }}</h2>
           </IonLabel>
@@ -82,6 +69,8 @@ import {
   searchOutline,
 } from 'ionicons/icons';
 import { ref, computed } from 'vue';
+import { onIonViewWillEnter } from '@ionic/vue';
+
 const showSearch = ref(false);
 const searchText = ref('');
 
@@ -97,10 +86,20 @@ const members = ref([
   { id: 4, name: 'Member 4', icon: add },
 ]);
 
+const loadData = () => {
+  // Load members data here
+  console.log('Loading members data...');
+};
+
 const handleRefresh = (event: RefresherCustomEvent) => {
   setTimeout(() => {
-    // Any calls to load data go here
+    loadData();
     event.target.complete();
   }, 2000);
 };
+
+// Called every time the view is entered (including first mount)
+onIonViewWillEnter(() => {
+  loadData();
+});
 </script>
