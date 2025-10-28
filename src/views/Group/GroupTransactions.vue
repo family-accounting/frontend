@@ -17,21 +17,37 @@
           <IonButton fill="clear" @click="showSearch = !showSearch">
             <IonIcon :icon="search"></IonIcon>
           </IonButton>
+          <IonButton :routerLink="{ name: 'GroupsList' }" fill="clear">
+            <IonIcon :icon="logOutOutline"></IonIcon>
+          </IonButton>
         </IonButtons>
-
       </IonToolbar>
     </IonHeader>
     <IonContent :fullscreen="true" :scroll-y="true">
       <IonRefresher slot="fixed" @ionRefresh="handleRefresh($event)">
         <IonRefresherContent></IonRefresherContent>
       </IonRefresher>
-      <IonSearchbar v-if="showSearch" v-model="searchText" placeholder="Search"></IonSearchbar>
+      <IonSearchbar
+        v-if="showSearch"
+        v-model="searchText"
+        placeholder="Search"
+      ></IonSearchbar>
       <IonList>
-        <IonItem :detail="true" button :routerLink="{
-          name: 'TransactionDetails',
-          params: { transactionId: transaction.id },
-        }" v-for="transaction in filteredTransactions" :key="transaction.id">
-          <IonIcon aria-hidden="true" :icon="getIcon(transaction.icon)" slot="start"></IonIcon>
+        <IonItem
+          :detail="true"
+          button
+          :routerLink="{
+            name: 'TransactionDetails',
+            params: { transactionId: transaction.id },
+          }"
+          v-for="transaction in filteredTransactions"
+          :key="transaction.id"
+        >
+          <IonIcon
+            aria-hidden="true"
+            :icon="getIcon(transaction.icon)"
+            slot="start"
+          ></IonIcon>
           <IonLabel slot="start">
             <h2>{{ transaction.name }}</h2>
             <p>{{ transaction.description }}</p>
@@ -79,6 +95,7 @@ import {
   airplane,
   heart,
   fastFood,
+  logOutOutline,
 } from 'ionicons/icons';
 import { onMounted, computed } from 'vue';
 import { ref } from 'vue';
@@ -106,7 +123,6 @@ const filteredTransactions = computed(() => {
   );
 });
 
-
 const getIcon = (iconName: string) => iconMap[iconName];
 const handleRefresh = async (event: RefresherCustomEvent) => {
   try {
@@ -119,9 +135,6 @@ const handleRefresh = async (event: RefresherCustomEvent) => {
   }
 };
 
-
-
-
-onMounted(() => { });
+onMounted(() => {});
 </script>
 <style scoped></style>
