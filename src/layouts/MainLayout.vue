@@ -6,14 +6,16 @@
       </IonToolbar>
     </IonHeader>
     <IonContent class="ion-padding">
-      <form>
+      <form @submit.prevent="onSubmit">
         <IonItem>
-          <IonToggle />
+          <IonLabel>Dark Mode</IonLabel>
+          <IonToggle v-model="darkMode" />
         </IonItem>
         <IonItem>
-          <IonRadioGroup value="fa" @change="handleLanguageChange($event)">
-            <IonRadio value="fa">fa</IonRadio><br />
-            <IonRadio value="en">en</IonRadio><br />
+          <IonLabel>Language</IonLabel>
+          <IonRadioGroup v-model="language">
+            <IonRadio value="fa">فارسی</IonRadio><br />
+            <IonRadio value="en">English</IonRadio><br />
           </IonRadioGroup>
         </IonItem>
         <IonItem>
@@ -69,13 +71,27 @@ import {
 import { people, person, statsChart } from 'ionicons/icons';
 import { useTranslation } from 'i18next-vue';
 import { i18next } from '@/i18n';
+import { ref, watch, onMounted } from 'vue';
 
-defineOptions({
-  inheritAttrs: false,
-});
+defineOptions({ inheritAttrs: false });
 
 const { t } = useTranslation();
-const handleLanguageChange = (event: CustomEvent<HTMLIonRadioGroupElement>) => {
-  i18next.changeLanguage(event.detail.value);
+
+const language = ref(localStorage.getItem('lang') || 'fa');
+const darkMode = ref(localStorage.getItem('theme') === 'dark');
+
+onMounted(() => {
+  document.body.classList.toggle('dark', darkMode.value);
+});
+
+watch(darkMode, (value) => {
+  document.body.classList.toggle('dark', value);
+  localStorage.setItem('theme', value ? 'dark' : 'light');
+});
+
+const onSubmit = () => {
+  i18next.changeLanguage(language.value);
+  localStorage.setItem('lang', language.value);
 };
 </script>
+
