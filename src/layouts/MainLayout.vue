@@ -6,16 +6,13 @@
       </IonToolbar>
     </IonHeader>
     <IonContent class="ion-padding">
-      <form @submit.prevent="onSubmit">
+      <form>
         <IonItem>
           <IonLabel>{{ t('language') }}</IonLabel>
-          <IonRadioGroup v-model="language">
+          <IonRadioGroup v-model="language" @ionChange="onChangeLanguage">
             <IonRadio value="fa">فارسی</IonRadio><br />
             <IonRadio value="en">English</IonRadio><br />
           </IonRadioGroup>
-        </IonItem>
-        <IonItem>
-          <IonButton type="submit" expand="block">{{ t('save') }}</IonButton>
         </IonItem>
       </form>
     </IonContent>
@@ -61,26 +58,25 @@ import {
   IonRadioGroup,
   IonRadio,
   IonItem,
-  IonButton,
 } from '@ionic/vue';
 import { people, person, statsChart } from 'ionicons/icons';
 import { useTranslation } from 'i18next-vue';
 import { i18next } from '@/i18n';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 defineOptions({ inheritAttrs: false });
 
 const { t } = useTranslation();
 
-const language = ref(localStorage.getItem('lang') || 'fa');
+const language = ref(localStorage.getItem('lang') || 'en');
 
-const onSubmit = () => {
+onMounted(() => {
+  language.value = localStorage.getItem('lang') || 'en';
   i18next.changeLanguage(language.value);
+});
+
+const onChangeLanguage = () => {
   localStorage.setItem('lang', language.value);
-  if (language.value === 'fa') {
-    document.body.setAttribute('dir', 'rtl');
-  } else {
-    document.body.setAttribute('dir', 'ltr');
-  }
+  i18next.changeLanguage(language.value);
 };
 </script>
