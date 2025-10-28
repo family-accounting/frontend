@@ -40,7 +40,6 @@ import {
 import { logOutOutline } from 'ionicons/icons';
 import { onIonViewWillEnter } from '@ionic/vue';
 
-
 const loadData = () => {
   // Load settings data here
   console.log('Loading settings data...');
