@@ -2,10 +2,17 @@
   <IonPage>
     <IonHeader>
       <IonToolbar>
-        <IonAvatar aria-hidden="true" slot="start">
-          <img src="/logo.svg" />
-        </IonAvatar>
-        <IonTitle slot="start"> Family Accounting </IonTitle>
+        <div slot="start" class="flex">
+          <IonButtons>
+            <IonMenuButton></IonMenuButton>
+          </IonButtons>
+          <RouterLink to="/" class="flex items-center">
+            <IonAvatar aria-hidden="true">
+              <img src="/logo.svg" />
+            </IonAvatar>
+            <IonTitle> Family Accounting </IonTitle>
+          </RouterLink>
+        </div>
         <IonButtons slot="end">
           <IonButton :routerLink="{ name: 'GroupsList' }" fill="clear">
             <IonIcon :icon="logOutOutline"></IonIcon>
@@ -36,6 +43,7 @@ import {
   RefresherCustomEvent,
   IonButtons,
   IonButton,
+  IonMenuButton,
 } from '@ionic/vue';
 import { logOutOutline } from 'ionicons/icons';
 import { onIonViewWillEnter } from '@ionic/vue';
