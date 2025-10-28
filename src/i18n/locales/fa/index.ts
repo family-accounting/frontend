@@ -10,5 +10,7 @@ export default {
     accounts: 'حساب ها',
     appName: 'حسابداری مشترک',
     appDescription: 'حسابداری مشترک سیستمی برای مدیریت مالی خانواده است.',
+    language: 'زبان',
+    save: 'ذخیره',
   },
 };
