@@ -43,6 +43,10 @@ import { createHead } from '@vueuse/head';
 const pinia = createPinia();
 const head = createHead();
 
+const lang = localStorage.getItem('lang') || 'en';
+document.body.setAttribute('dir', lang === 'fa' ? 'rtl' : 'ltr');
+document.body.classList.toggle('dark', localStorage.getItem('theme') === 'dark');
+
 const app = createApp(App)
   .use(IonicVue)
   .use(pinia)

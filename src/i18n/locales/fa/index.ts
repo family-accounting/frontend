@@ -12,5 +12,6 @@ export default {
     appDescription: 'حسابداری مشترک سیستمی برای مدیریت مالی خانواده است.',
     language: 'زبان',
     save: 'ذخیره',
+    menu: 'منو',
   },
 };
