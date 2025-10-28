@@ -58,7 +58,6 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
-  IonToggle,
   IonRadioGroup,
   IonRadio,
   IonItem,
