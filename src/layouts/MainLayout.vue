@@ -88,10 +88,15 @@ watch(darkMode, (value) => {
   document.body.classList.toggle('dark', value);
   localStorage.setItem('theme', value ? 'dark' : 'light');
 });
-
+watch(language, (value) => {
+  if (value === 'fa') {
+    document.body.setAttribute('dir', 'rtl');
+  } else {
+    document.body.setAttribute('dir', 'ltr');
+  }
+});
 const onSubmit = () => {
   i18next.changeLanguage(language.value);
   localStorage.setItem('lang', language.value);
 };
 </script>
-
