@@ -11,5 +11,7 @@ export default {
     appName: 'Family Accounting',
     appDescription:
       "Family Accounting is a mobile app for managing your family's finances.",
+    language: 'Language',
+    save: 'Save',
   },
 };
